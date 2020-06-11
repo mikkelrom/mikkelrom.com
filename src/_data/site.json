@@ -1,7 +1,7 @@
 {
   "showThemeCredit": true,
-  "name": "Personal blog of Mikkel Rom",
-  "shortDesc": "This is my personal blog where I occasionally write about web performance, design systems, programming or just the web in generel.",
+  "name": "mikkelrom.com",
+  "shortDesc": "This is my personal blog where I occasionally write about web performance, design systems, CSS, programming or anything web related.",
   "url": "https://mikkelrom.netlify.com/",
   "authorEmail": "mikkelrom@gmail.com",
   "authorHandle": "@mikkelrom",

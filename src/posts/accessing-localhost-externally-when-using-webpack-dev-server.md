@@ -1,7 +1,7 @@
 ---
 layout: layouts/post.njk
 title: Accessing localhost externally when using webpack-dev-server
-socialImage: images/maxim-ilyahov-0arycsfh57a-unsplash-1-.jpg
+socialImage: images/maxim-ilyahov-0arycsfh57a-unsplash.jpg
 date: 2020-06-11T19:37:37.642Z
 tags:
   - webpack
@@ -10,7 +10,7 @@ tags:
   - localhost
   - protip
 ---
-![Young caucasian woman on leather couch working at a laptop while browsing her phone](/images/maxim-ilyahov-0arycsfh57a-unsplash-1-.jpg "Photo by Maxim Ilyahov on Unsplash")
+![Young caucasian woman on leather couch working at a laptop while browsing her phone](/images/maxim-ilyahov-0arycsfh57a-unsplash.jpg "Photo by Maxim Ilyahov on Unsplash")
 
 
 
