@@ -1,6 +1,7 @@
 ---
 layout: layouts/post.njk
 title: Accessing localhost externally when using webpack-dev-server
+socialImage: images/maxim-ilyahov-0arycsfh57a-unsplash-1-.jpg
 date: 2020-06-11T19:37:37.642Z
 tags:
   - webpack
