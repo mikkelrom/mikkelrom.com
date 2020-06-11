@@ -10,7 +10,7 @@ tags:
   - localhost
   - protip
 ---
-![Young caucasian woman on leather couch working at a laptop while browsing her phone](images/maxim-ilyahov-0arycsfh57a-unsplash-1-.jpg "Photo by Maxim Ilyahov on Unsplash")
+![Young caucasian woman on leather couch working at a laptop while browsing her phone](/images/maxim-ilyahov-0arycsfh57a-unsplash-1-.jpg "Photo by Maxim Ilyahov on Unsplash")
 
 
 
