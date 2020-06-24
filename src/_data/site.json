@@ -1,13 +1,13 @@
 {
-  "showThemeCredit": true,
+  "showThemeCredit": false,
   "name": "mikkelrom.com",
   "shortDesc": "This is my personal blog where I occasionally write about web performance, design systems, CSS, programming or anything web related.",
-  "url": "https://mikkelrom.netlify.com/",
+  "url": "https://mikkelrom.com/",
   "authorEmail": "mikkelrom@gmail.com",
   "authorHandle": "@mikkelrom",
   "authorName": "Mikkel Rom Engholm",
   "enableThirdPartyComments": false,
-  "paymentPointer": "blah",
+  "paymentPointer": "false",
   "faviconPath": "/images/favicon.png",
   "maxPostsPerPage": 5
 }

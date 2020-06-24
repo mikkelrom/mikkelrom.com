@@ -6,14 +6,9 @@
       "external": false
     },
     {
-      "text": "LinkedIn",
-      "url": "https://www.linkedin.com/in/mikkelrom/",
-      "external": true
-    },
-    {
-      "text": "Twitter",
-      "url": "https://twitter.com/mikkelrom",
-      "external": true
+      "text": "About me",
+      "url": "/about-me",
+      "external": false
     }
   ]
 }
