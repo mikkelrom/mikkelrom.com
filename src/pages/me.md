@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: me
+permalink: me
 ---
 My name is Mikkel Rom, I'm currently Lead Frontend Developer at [Creuna](https://www.creuna.com/dk/) in Aarhus, Denmark.
 This is my blog where I'll occasionally write about things related to web development 👨‍💻
