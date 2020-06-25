@@ -12,3 +12,5 @@ tags:
 * Performance optimizations checklist
 * Off the main thread - web workers
 * Stencil caching issue
+* Web vitals
+* Component library benefits (?)
