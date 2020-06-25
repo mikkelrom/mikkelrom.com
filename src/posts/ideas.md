@@ -10,3 +10,4 @@ tags:
 * jQuerys impact on the web
 * Screen sizes
 * Performance optimizations checklist
+* Off the main thread - web workers
