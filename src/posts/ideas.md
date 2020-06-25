@@ -11,3 +11,4 @@ tags:
 * Screen sizes
 * Performance optimizations checklist
 * Off the main thread - web workers
+* Stencil caching issue
