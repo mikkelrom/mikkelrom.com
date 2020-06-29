@@ -118,6 +118,14 @@
       padding: get-size(700);
       font-size: get-size(500);
     }
+
+    .first-letter::first-letter {
+      font-size: 90px;
+      line-height: .5;
+      text-shadow: #000 -3px 4px 0px, var(--color-theme-feature-text) -4px 7px 0px;
+      margin-right: -1px;
+      font-family: monospace;
+    }
   }
 
   &__footer {

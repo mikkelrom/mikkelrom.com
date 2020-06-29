@@ -35,6 +35,15 @@ module.exports = function(config) {
   config.addPassthroughCopy('src/admin/previews.js');
   config.addPassthroughCopy('node_modules/nunjucks/browser/nunjucks-slim.js');
 
+  // ShortCodes
+  config.addShortcode("first-letter-paragraph-start", function(text) {
+    return `<p class="first-letter">`;
+  });
+
+  config.addShortcode("first-letter-paragraph-end", function(text) {
+    return `</p>`;
+  });
+
   const now = new Date();
 
   // Custom collections
