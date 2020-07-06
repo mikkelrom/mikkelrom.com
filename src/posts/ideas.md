@@ -19,6 +19,7 @@ tags:
 * Lazyload images
 * Images in CMS’s - no compression - WTF, it's 2020 !!
 * The Four implicit but forgotten: SEO, a11y, perf, Security 
+* `scroll-behavior: smooth;`
 
 
 # Styling
