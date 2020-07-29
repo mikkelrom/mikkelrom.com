@@ -6,6 +6,11 @@
       "external": false
     },
     {
+      "text": "Archive",
+      "url": "/archive",
+      "external": false
+    },
+    {
       "text": "About me",
       "url": "/about-me",
       "external": false

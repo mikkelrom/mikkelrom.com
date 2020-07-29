@@ -40,6 +40,35 @@ hr {
   margin: get-size(900) auto;
 }
 
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  cursor: pointer;
+
+  color: var(--color-dark);
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 0.4rem 0.3rem 0.4rem;
+  text-decoration: none;
+  word-break: break-word;
+  border-bottom: 2px solid var(--color-theme-highlight);
+  transition: color 0.1s ease-in;
+
+  &:hover {
+      color: var(--color-theme-highlight);
+  }
+}
+
+@include dark-mode() {
+  a:not([class]) {
+    color: var(--color-light);
+    border-bottom: 2px solid var(--color-theme-highlight);
+  }
+
+  a:not([class]):hover {
+    color: var(--color-theme-highlight);
+  }
+}
+
 /**
  * PROJECT IMPORTS
  */

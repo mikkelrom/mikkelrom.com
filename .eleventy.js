@@ -44,6 +44,10 @@ module.exports = function(config) {
     return `</p>`;
   });
 
+  config.addShortcode("first-letter", function(text) {
+    return `<p class="first-letter">${text}</p>`;
+  });
+
   const now = new Date();
 
   // Custom collections
