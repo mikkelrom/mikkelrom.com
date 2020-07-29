@@ -1,8 +1,7 @@
 ---
 layout: layouts/post.njk
-socialImage: images/pankaj-patel-6jvlsdgmace-unsplash-1-.jpg
+socialImage: /images/pankaj-patel-6jvlsdgmace-unsplash-1-.jpg
 date: 2020-07-29T22:37:33.082Z
-_socialImage: images/maxim-ilyahov-0arycsfh57a-unsplash.jpg
 title: Does a media-query affect specificity?
 metaTitle: Does a media-query affect specificity? Let's find out...
 metaDesc: A while back I had a nice and healthy discussion with my colleague,
