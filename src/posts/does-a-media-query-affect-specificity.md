@@ -1,8 +1,13 @@
 ---
 layout: layouts/post.njk
-title: Does a media-query affect specificity? 
+socialImage: images/pankaj-patel-6jvlsdgmace-unsplash-1-.jpg
+date: 2020-07-29T22:37:33.082Z
 _socialImage: images/maxim-ilyahov-0arycsfh57a-unsplash.jpg
-date: 2020-07-29T21:30:00.000Z
+title: Does a media-query affect specificity?
+metaTitle: Does a media-query affect specificity? Let's find out...
+metaDesc: A while back I had a nice and healthy discussion with my colleague,
+  about whether having a rule of CSS, wrapped in a media-query would affect
+  specificity or not.
 tags:
   - css
   - specificity
