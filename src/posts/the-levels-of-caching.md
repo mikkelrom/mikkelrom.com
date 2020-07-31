@@ -27,3 +27,7 @@ CLIENT
 * [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
 * IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
 * ServiceWorkers - CacheStorage API: <https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage>
+
+
+
+Link: <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage>
