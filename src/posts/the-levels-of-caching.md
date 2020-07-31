@@ -26,8 +26,32 @@ CLIENT
 * Cookies
 * [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
 * IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
+
+
+
+CLIENT-PROXY
+
 * ServiceWorkers - CacheStorage API: <https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage>
 
 
+
+BROWSER
+
+* Built-in browser cache (HTTP cache) that we as developers can't control directly.
+
+
+
+EDGE/CDN
+
+* Edge-workers - logic on the CDN
+* CDN cache
+
+
+
+SERVER
+
+* Memory cache. Just like the JS variable on the client, just on the server instead.
+* Filesystem
+*
 
 Link: <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage>
