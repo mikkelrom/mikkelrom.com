@@ -5,11 +5,7 @@ date: 2020-07-31T09:02:28.278Z
 tags:
   - caching
 ---
-The different levels of caching - from client to server.
-
 Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All these informations needs to be persisted, or cached. There are many ways to do this, and each method has it's own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to other than myself.
-
-It's essential in web development to be able to save state, so that a user can return to the same place in the checkout-process or so that it's possible to share specific content with a friend or on social media.
 
 Columns: 
 
@@ -19,9 +15,16 @@ Columns:
 
 
 
-CLIENT
+# CLIENT
 
-* A JavaScript variable, scoped or global. CSS variables aka. Custom Properties. This lives in memory, and will be cleared when you refresh the page.
+## Runtime variables
+A JavaScript variable, scoped or global. CSS variables aka. Custom Properties. This lives in memory, and will be cleared when you refresh the page.
+
+```javascript
+const loggedIn = true;
+```
+
+
 * Local-storage
 * Session-storage
 * Cookies
