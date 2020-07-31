@@ -9,6 +9,14 @@ The different levels of caching - from client to server.
 
 It's essential in web development to be able to save state, so that a user can return to the same place in the checkout-process or so that it's possible to share specific content with a friend or on social media.
 
+Columns: 
+
+* Caching mechanism
+* Persistence
+* Docs
+
+
+
 CLIENT
 
 * A JavaScript variable, scoped or global. This lives in memory, and will be cleared when you refresh the page.
@@ -18,5 +26,4 @@ CLIENT
 * Cookies
 * [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
 * IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
-* CacheStorage API - used in service-workers: <https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage>
-*
+* ServiceWorkers - CacheStorage API: <https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage>
