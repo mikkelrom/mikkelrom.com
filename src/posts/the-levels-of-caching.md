@@ -97,8 +97,6 @@ sessionStorage.getItem("key"); // "value"
 https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
 
 
-
-* Session-storage
 * Cookies
 * [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
 * IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
