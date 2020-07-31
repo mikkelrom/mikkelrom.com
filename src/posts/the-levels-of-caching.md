@@ -55,6 +55,6 @@ SERVER
 
 
 
-What about redux, NGRX, VueX or other JavaScript store-libraries for state mangement? These all live in the "JS variable" category.
+What about Redux, NGRX, VueX or other JavaScript store-libraries for state mangement? These all live in the "JS variable" category.
 
 Link: <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage>
