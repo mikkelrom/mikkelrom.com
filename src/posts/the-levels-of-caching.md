@@ -15,13 +15,28 @@ Columns:
 
 
 
-# CLIENT
+# Client
+Let's start with the caching technologies that are available on the client.
 
 ## Runtime variables
-A JavaScript variable, scoped or global. CSS variables aka. Custom Properties. This lives in memory, and will be cleared when you refresh the page.
+* A **JavaScript variable**, either scoped to a specific context or global, is a runtime variable. You can store data in a variable in runtime, for example when a user clicks a button, but when you reload the page, that data will be gone.
+* **CSS variables aka. Custom Properties** is also a runtime variable.
 
+### Persistence
+This lives in memory, and will be cleared (or reset to it's initial state) when you reload the page.
+
+### Use-case
+
+
+### Examples
 ```javascript
 const loggedIn = true;
+```
+
+```css
+::root {
+    --color: red;
+}
 ```
 
 
