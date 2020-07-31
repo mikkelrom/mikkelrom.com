@@ -6,7 +6,6 @@ tags:
   - draft
 ---
 * 10 levels of caching
-* Does @media queries have any specificity?
 * jQuerys impact on the web
 * Screen sizes
 * Performance optimizations checklist
@@ -21,7 +20,6 @@ tags:
 * The Four implicit but forgotten: SEO, a11y, perf, Security 
 * `scroll-behavior: smooth;`
 
-
 # Styling
-* Styling: firstletter
+
 * blendmode multiply
