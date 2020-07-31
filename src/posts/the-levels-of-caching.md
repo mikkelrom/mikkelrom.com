@@ -82,13 +82,15 @@ Session-storage is great for storing small amounts of data on the client, that i
 Session-storage survives a page-refresh. It is cleared when the session ends, which is when the tab/window is closed.
 
 ### Use-case
-
-Autosaving the contents of a text-field.
+Autosaving the contents of a text-field, since this data is specific to the current session.
 
 ### Example
 
 ```javascript
 // JavaScript
+sessionStorage.setItem("key", 'value');
+
+sessionStorage.getItem("key"); // "value"
 ```
 
 ### Read more
