@@ -19,8 +19,7 @@ Columns:
 
 CLIENT
 
-* A JavaScript variable, scoped or global. This lives in memory, and will be cleared when you refresh the page.
-* CSS variables aka. Custom Properties
+* A JavaScript variable, scoped or global. CSS variables aka. Custom Properties. This lives in memory, and will be cleared when you refresh the page.
 * Local-storage
 * Session-storage
 * Cookies
@@ -55,5 +54,7 @@ SERVER
 * Database
 
 
+
+What about redux, NGRX, VueX or other JavaScript store-libraries for state mangement? These all live in the "JS variable" category.
 
 Link: <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage>
