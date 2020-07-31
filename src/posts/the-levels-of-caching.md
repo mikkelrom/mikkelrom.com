@@ -7,12 +7,6 @@ tags:
 ---
 Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All these informations needs to be persisted, or cached. There are many ways to do this, and each method has it's own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to other than myself.
 
-Columns: 
-
-* Caching mechanism
-* Persistence
-* Docs
-
 # Client
 
 Let's start with the caching technologies that are available on the client.
@@ -46,7 +40,7 @@ let color = 'red';
 
 ### Read more
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
 
 ## Local-storage
 
@@ -71,7 +65,7 @@ localStorage.getItem('view-mode'); // "gallery"
 
 ### Read more
 
-https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+[https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 ## Session-storage
 
@@ -94,7 +88,7 @@ sessionStorage.getItem("key"); // "value"
 ```
 
 ### Read more
-https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+[https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
 
 
 * Cookies
