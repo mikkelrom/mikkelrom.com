@@ -5,7 +5,9 @@ date: 2020-07-31T09:02:28.278Z
 tags:
   - caching
 ---
-The different levels of caching - from client to server
+The different levels of caching - from client to server.
+
+It's essential in web development to be able to save state, so that a user can return to the same place in the checkout-process or so that it's possible to share specific content with a friend or on social media.
 
 CLIENT
 
@@ -14,6 +16,7 @@ CLIENT
 * Local-storage
 * Session-storage
 * Cookies
+* [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
 * IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
 * CacheStorage API - used in service-workers: <https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage>
 *
