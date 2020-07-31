@@ -26,14 +26,16 @@ Let's start with the caching technologies that are available on the client.
 This lives in memory, and will be cleared (or reset to it's initial state) when you reload the page.
 
 ### Use-case
-
+A common scenario for this could be to save whether the user has opened the burger-menu or not. It could also be used to save whether the user is currently hovering a specific element or not. These types of informations doesn't need to be "survive" a page-refresh.
 
 ### Examples
 ```javascript
-const loggedIn = true;
+// JavaScript
+let color = 'red';
 ```
 
 ```css
+/* CSS */
 ::root {
     --color: red;
 }
