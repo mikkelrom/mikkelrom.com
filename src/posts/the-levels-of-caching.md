@@ -52,6 +52,8 @@ SERVER
 
 * Memory cache. Just like the JS variable on the client, just on the server instead.
 * Filesystem
-*
+* Database
+
+
 
 Link: <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage>
