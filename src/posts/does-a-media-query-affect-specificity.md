@@ -12,11 +12,10 @@ tags:
   - specificity
   - protip
 ---
-
-A while back I had a nice and healthy discussion with my colleague, about whether having a rule of CSS, wrapped in a 
+{% first-letter "A while back I had a nice and healthy discussion with my colleague, about whether having a rule of CSS, wrapped in a 
 media-query would affect specificity or not. I was pretty sure that a media-query didn't affect the specificity, but 
 when we talked about it back and forth, I started doubting myself a tiny bit. So I decided to make a simple test, and 
-I want to share the findings here, hoping someone can use it.  
+I want to share the findings here, hoping someone can use it." %}
 
 So let's have a look at a super simple example, that also gives away the answer quite clearly:
 
