@@ -41,8 +41,51 @@ let color = 'red';
 }
 ```
 
+### Read more
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
 
-* Local-storage
+
+## Local-storage
+Local-storage is great for storing small amounts of data on the client.
+
+### Persistence
+The data is persisted, so it can "survive" a page-refresh. It will be deleted when the user chooses to ["Clear browsing data"](https://support.google.com/accounts/answer/32050). It can also be deleted programmatically in JS.
+
+### Use-case
+This could be used for saving a personal non-critical user preference such as "gallery list view". This would be okay not to persist in the URL for example, since it's a matter of taste and a thing such as view-mode also depends on the users screensize.
+
+### Example
+```javascript
+// JavaScript
+localStorage.setItem('view-mode', 'gallery');
+
+localStorage.getItem('view-mode'); // "gallery"
+```
+
+### Read more
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+
+------------
+
+
+## X
+
+### Persistence
+
+
+### Use-case
+
+
+### Example
+```javascript
+// JavaScript
+
+```
+
+### Read more
+[Links]
+
+
 * Session-storage
 * Cookies
 * [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
