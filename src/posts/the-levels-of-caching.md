@@ -14,5 +14,6 @@ CLIENT
 * Local-storage
 * Session-storage
 * Cookies
+* IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
 * CacheStorage API - used in service-workers: <https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage>
 *
