@@ -5,7 +5,15 @@ date: 2020-07-31T09:02:28.278Z
 tags:
   - caching
 ---
-Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All these informations needs to be persisted, or cached. There are many ways to do this, and each method has it's own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to other than myself.
+Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All these informations needs to be persisted, or in other words, cached. 
+There are many ways to do this, and each method has it's own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to others as well.
+
+**Overview**
+
+Client
+- [Runtime variables](#heading-runtime-variables)
+- [Local storage](#heading-local-storage)
+- [Session storage](#heading-session-storage)
 
 # Client
 
@@ -42,17 +50,21 @@ let color = 'red';
 
 [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
 
+
+
+
+
 ## Local-storage
 
 Local-storage is great for storing small amounts of data on the client.
 
 ### Persistence
 
-The data is persisted, so it can "survive" a page-refresh. It will be deleted when the user chooses to ["Clear browsing data"](https://support.google.com/accounts/answer/32050). It can also be deleted programmatically in JS.
+The data is persisted, so it can "survive" a page-refresh. It will be deleted when the user chooses to ["Clear browsing data"](https://support.google.com/accounts/answer/32050). It can also be deleted programmatically in JS or manually through browser devtools.
 
 ### Use-case
 
-This could be used for saving a personal non-critical user preference such as "gallery list view". This would be okay not to persist in the URL for example, since it's a matter of taste and a thing such as view-mode also depends on the users screensize.
+This could be used for saving a anonymized user preference such as "gallery list view".
 
 ### Example
 
@@ -76,7 +88,7 @@ Session-storage is great for storing small amounts of data on the client, that i
 Session-storage survives a page-refresh. It is cleared when the session ends, which is when the tab/window is closed.
 
 ### Use-case
-Autosaving the contents of a text-field, since this data is specific to the current session.
+This could be used for a feature that autosaves the contents of a text-field, since this data is specific to the current session.
 
 ### Example
 
@@ -91,7 +103,32 @@ sessionStorage.getItem("key"); // "value"
 [https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
 
 
-* Cookies
+## Cookies
+Cookies are kind of old-school, but they actually have a super-power that for example local storage doesn't have: Cookies are sent from the client to the server, which can be very useful. 
+
+### Persistence
+A cookie can be a "session cookie". Session cookies is only persisted in the current session, similar to session storage.
+If a cookie if not a session cookie, then it is persisted, so it can "survive" a page-refresh. It will be deleted when the user chooses to ["Clear browsing data"](https://support.google.com/accounts/answer/32050). It can also be deleted programmatically in JS or manually through browser devtools. 
+A cookie can also have an optional `expirationDate` set, which will automatically invalidate the cookie at that time.
+
+### Use-case
+A cookie has been used for many years to save whether the user is logged in or not. This has also shown be to risky though, since cookies can be stolen. A cookie could also be used for saving the view-mode.
+
+### Example
+
+```javascript
+// JavaScript
+document.cookie = "key=value";
+
+document.cookie; // "key=value"
+
+```
+
+### Read more
+[https://developer.mozilla.org/en-US/docs/Web/API/document/cookie](https://developer.mozilla.org/en-US/docs/Web/API/document/cookie)
+
+
+
 * [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
 * IndexedDB - <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
 
@@ -130,6 +167,6 @@ SERVER
 * Filesystem
 * Database
 
-What about Redux, NGRX, VueX or other JavaScript store-libraries for state mangement? These all live in the "JS variable" category.
+What about Redux, NGRX, VueX or other JavaScript store-libraries for state management? These all live in the "Runtime variables" category.
 
 Link: <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage>
