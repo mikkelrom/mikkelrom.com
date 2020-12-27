@@ -1,7 +1,6 @@
 ---
 layout: layouts/post.njk
 title: Does a media-query affect specificity? 
-_socialImage: images/maxim-ilyahov-0arycsfh57a-unsplash.jpg
 date: 2020-07-29T21:30:00.000Z
 tags:
   - css
