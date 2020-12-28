@@ -22,6 +22,10 @@
   justify-content: center;
   margin-top: 2rem;
 
+  .speedlify-score.speedlify-score-good {
+    color: #0ff47e; // A11y-fix in dark-mode
+  }
+
   > a {
     text-decoration: none;
   }
