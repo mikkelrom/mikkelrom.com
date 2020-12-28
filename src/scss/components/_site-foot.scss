@@ -22,8 +22,20 @@
   justify-content: center;
   margin-top: 2rem;
 
-  .speedlify-score.speedlify-score-good {
-    color: #0ff47e; // A11y-fix in dark-mode
+  [data-user-color-scheme="light"] & {
+    .speedlify-score-bad {
+      color: #d44137;
+    }
+
+    .speedlify-score-ok {
+      color: #a46900;
+    }
+  }
+
+  [data-user-color-scheme="dark"] & {
+    .speedlify-score.speedlify-score-good {
+      color: #0ff47e; // A11y-fix in dark-mode
+    }
   }
 
   > a {
