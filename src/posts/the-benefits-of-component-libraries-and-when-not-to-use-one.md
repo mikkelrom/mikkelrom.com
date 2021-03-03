@@ -40,7 +40,7 @@ I typically have three general categories in the component libraries that I buil
 
 These are very essential building blocks of a organised system, without these it becomes really hard to maintain consistency over time.
 
-## **What is a component library?**
+## What is a component library?
 
 A component library is actually just one of the most recent names of something that has existed for many years. It has been called pattern library, style guide, UI kit, UI library, CVI (Corporate Visual Identity). Even though these are different and not exactly the same, they all more or less try to reach the same goal: **Document the UI in one place**, although a CVI and a style guide might focus more on documenting the broader visual identity, which might apply to both digital and non-digital.
 
@@ -52,7 +52,7 @@ The component library can be deployed so it's available on a URL so other discip
 
 There are so many reasons why it's great to use a component library - get ready, here they come...
 
-### #1 UI **overview**
+### #1 UI overview
 
 Having all components gathered in one place makes it very easy to get an overview of the entire UI. Being able to search for a component and see all the different states and variants of that component is just super essential, especially when a new developer joins the team. Having the overview makes onboarding much easier and faster - and therefore also cheaper.
 
@@ -60,7 +60,7 @@ Example of [Audi's Storybook](https://react.ui.audi/?path=/story/components-butt
 
 ![Audi's Storybook](/images/component-libraries/audi-storybook.jpg "Audi's Storybook")
 
-### #2 **Build components in isolation, to make them reusable by default**
+### #2 Build components in isolation, to make them reusable by default
 
 Example of building the classical way (inside the real solution):
 
