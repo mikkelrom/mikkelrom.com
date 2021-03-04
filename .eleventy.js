@@ -48,6 +48,16 @@ module.exports = function(config) {
     return `<p class="first-letter">${text}</p>`;
   });
 
+  // Start details + summary
+  config.addShortcode("details", function(text) {
+    return `<details><summary>${text}</summary>`;
+  });
+
+  // End details
+  config.addShortcode("details-end", function() {
+    return `</details>`;
+  });
+
   const now = new Date();
 
   // Custom collections

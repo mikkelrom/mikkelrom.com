@@ -12,6 +12,36 @@ tags:
   - fractal
   - patternlab
 ---
+
+{% details "Table of Contents" %}
+
+1. [Intro](#heading-intro)
+1. [What is a component?](#heading-what-is-a-component)
+1. [What is a component library?](#heading-what-is-a-component-library)
+1. [Benefits of using a component library](#heading-benefits-of-using-a-component-library)
+    - [#1 UI overview](#heading-1-ui-overview)
+    - [#2 Build components in isolation, to make them reusable by default](#heading-2-build-components-in-isolation-to-make-them-reusable-by-default)
+    - [#3 Variants](#heading-3-variants)
+    - [#4 Ability to work offline](#heading-4-ability-to-work-offline)
+    - [#5 No local server configuration needed](#heading-5-no-local-server-configuration-needed)
+    - [#6 No local database needed](#heading-6-no-local-database-needed)
+    - [#7 No dependency on authenticated user data](#heading-7-no-dependency-on-authenticated-user-data)
+    - [#8 No dependency on CMS data](#heading-8-no-dependency-on-cms-data)
+    - [#9 Fast page-reloads](#heading-9-fast-page-reloads)
+    - [#10 OS independence](#heading-10-os-independence)
+    - [#11 No dependency on backend](#heading-11-no-dependency-on-backend)
+1. [Which component library should I use?](#heading-which-component-library-should-i-use)
+    - [Single HTML-page](#heading-single-html-page)
+    - [PatternLab](#heading-patternlab)
+    - [Fractal](#heading-fractal)
+    - [Storybook](#heading-storybook)
+1. [Should I deploy it?](#heading-should-i-deploy-it)
+1. [When should I NOT use a component library?](#heading-when-should-i-not-use-a-component-library)
+1. [What's the hardest part?](#heading-what's-the-hardest-part)
+1. [Conclusion](#heading-conclusion)
+
+{% details-end %}
+
 ## Intro
 
 Design systems have been a hot topic for a few years now, and thereby also component libraries. But what makes them so special and what's all the hype about?
@@ -80,17 +110,19 @@ Of course component libraries doesn't solve all problems, communication and code
 
 ### #3 Variants
 
-By adding multiple variants you can document how the component behaves in different scenarios, this will surface edge-cases and hard-to-reach use-cases, resulting in more robust components and less bugs. This is a huge benefit!
+By adding multiple variants you can document how the component behaves in different scenarios, this will surface edge-cases and hard-to-reach use-cases, resulting in more robust components and less bugs. This is a huge benefit! It's also just really nice to flesh out all the (relevant) possible props-combinations so it's easy to see what your "available LEGO bricks look like".
 
-Examples of variants of a simple button could be:
+Examples of variants of a very simple button could be:
 
 - Primary
 - Seconary
-- Disabled
 - Small
 - Large
-- Long text
+- Disabled
 - Icon
+- Long text
+
+The "Long text" variant is great at showing how the button handles a lot of text. Does the button have a maximum width? Will it truncate the text, and does it add an ellipsis (...) if truncating? Does the text go into two lines? We don't know - this is why it's great to show it.
 
 I often compare component variants to unit tests, even though they are not exactly the same, I still think they share some common concepts. The job of a unit test is to make sure the code works as expected and to document all weird edge-case scenarios. These are some of the same reasons you would show-case a component and all it's variants in a component library.
 
