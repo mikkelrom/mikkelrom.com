@@ -2,13 +2,15 @@
 layout: layouts/post.njk
 title: The benefits of component libraries and when not to use one
 metaTitle: The benefits of component libraries and when not to use one
-metaDesc: TBD
+metaDesc: Design systems have been a hot topic for a few years now, and thereby
+  also component libraries. But what makes them so special and what's all the
+  hype about?
 socialImage: https://media.giphy.com/media/7E8lI6TkLrvvAcPXso/giphy.gif
-date: 2021-03-02T21:40:08.356Z
+date: 2021-03-04T07:49:43.473Z
 tags:
   - componentlibraries
   - designsystems
-  - storybook 
+  - storybook
   - fractal
   - patternlab
 ---
