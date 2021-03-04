@@ -5,7 +5,7 @@ metaTitle: The benefits of component libraries and when not to use one
 metaDesc: Design systems have been a hot topic for a few years now, and thereby
   also component libraries. But what makes them so special and what's all the
   hype about?
-socialImage: images/componentlibraries.jpg
+socialImage: images/component-libraries.jpg
 date: 2021-03-04T07:49:43.473Z
 tags:
   - componentlibraries
