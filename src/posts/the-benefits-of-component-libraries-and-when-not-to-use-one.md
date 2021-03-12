@@ -45,7 +45,7 @@ tags:
 
 {% details-end %}
 
-![Component libraries: Storybook, patternlab, fractal](images/component-libraries.jpg)
+![Component libraries: Storybook, patternlab, fractal](/images/component-libraries.jpg)
 
 ## Intro
 
