@@ -74,11 +74,11 @@ These are very essential building blocks of a organised system, without these it
 
 ## What is a component library?
 
-A component library is actually just one of the most recent names of something that has existed for many years. It has been called pattern library, style guide, UI kit, UI library, CVI (Corporate Visual Identity). Even though these are different and not exactly the same, they all more or less try to reach the same goal: **Document the UI in one place**, although a CVI and a style guide might focus more on documenting the broader visual identity, which might apply to both digital and non-digital.
+A component library is actually just one of the most recent names of something that has existed for many years. It has been called pattern library, style guide, UI kit, UI library or CVI (Corporate Visual Identity). Even though these are different and not exactly the same, they all more or less try to reach the same goal: **Document the UI in one place**, although a CVI and a style guide might focus more on documenting the broader visual identity, which might apply to both digital and non-digital.
 
 A component library is a component workshop environment that frontend developers use to build and test their UI components (or entire pages or flows) in isolation.
 
-The component library can be deployed so it's available on a URL so other disciplines in the team/organisation such as designers, UX'ers, backenders, architects, project managers, stakeholders etc. can access it. When the component library starts to become something that many different disciplines, teams or people use and depend on, this is where (in my opinion) it starts to grow into being a design system. I'll get back to what component library you should choose in a bit, but first I'd like to talk about the (many) benefits of using one.
+The component library can be deployed so it's available on a URL so other disciplines in the team/organisation such as designers, UX'ers, backenders, architects, project managers or stakeholders can access it. When the component library starts to become something that many different disciplines, teams or people use and depend on, this is where (in my opinion) it starts to grow into being a design system. I'll get back to what component library you should choose in a bit, but first I'd like to talk about the (many) benefits of using one.
 
 ## Benefits of using a component library
 
@@ -100,7 +100,7 @@ Let's say you get a design from a designer for a new page. When building one of 
 
 A month later the designer creates a new design for another page using the same component you built, but with a few modifications. Only this time it's assigned to your colleague (which accidentally is located in one of the other offices in your organisation), because he/she had time available for this task. Your colleague solves the task in the same way as you did, because he/she didn't know about the component you had already build. Now you have two very similar components in the same product leading to unnecessary bytes for the end-users and unnecessary code to maintain for the team.
 
-This example is perhaps a bit too far-fetched, but nonetheless it's not entirely unrealistic. If people don't talk together, don't do regular code-reviews etc. - then it's hard to know about all the features and all the parts of the application.
+This example is perhaps a bit too far-fetched, but nonetheless it's not entirely unrealistic. If people don't talk together, don't do regular code-reviews and so on - then it's hard to know about all the features and all the parts of the application.
 
 This is where a component library can help out. When creating a component in a component library, it's created in isolation from the beginning. When it's created in isolation, you make sure that it's:
 
@@ -108,7 +108,7 @@ This is where a component library can help out. When creating a component in a c
 
 2. you make sure that it's visible to other developers in the team, so they don't end up building the same similar component, but instead consider if they can reuse and/or extend the existing component. This saves time and money in the long run.
 
-Of course component libraries doesn't solve all problems, communication and code-reviews etc. are still very important - but having one place for all components helps that process and makes it easier.
+Of course component libraries doesn't solve all problems. Communication and code-reviews are still crucial, and having one place for all components helps that process and makes it easier.
 
 ### #3 Variants
 
@@ -132,7 +132,7 @@ When talking about states and variants, I can highly recommend this must-read to
 
 ### #4 Ability to work offline
 
-You are (simply put) just working with JS, CSS and HTML files locally, so in most cases you can actually work offline (except when uploading/downloading the source code etc.). You also don't need to connect to a special network through the company VPN. This is nice if you occasionally need to work in an environment with a spotty connection such as an airplane or on a train.
+You are (simply put) just working with JS, CSS and HTML files locally, so in most cases you can actually work offline (except when uploading/downloading the source code). You also don't need to connect to a special network through the company VPN. This is nice if you occasionally need to work in an environment with a spotty connection such as an airplane or on a train.
 
 ### #5 No local server configuration needed
 
@@ -160,13 +160,13 @@ A component library typically provides almost instant reloads, because it has no
 
 ### #10 OS independence
 
-Being able to run just the frontend-part of a project which doesn't care if it's running on Linux, Windows or Mac, is actually really nice. IMO it's more inclusive and effective that way, not forcing frontend developers onto an Operating System in which they might be less productive or feel less comfortable with. It can be frustrating having to switch between different OS's and re-learn keyboard shortcuts etc.
+Being able to run just the frontend-part of a project which doesn't care if it's running on Linux, Windows or Mac, is actually really nice. IMO it's more inclusive and effective that way, not forcing frontend developers onto an Operating System in which they might be less productive or feel less comfortable with. It can be frustrating having to switch between different OS's and re-learn keyboard shortcuts.
 
 ### #11 No dependency on backend
 
 Sometimes it's not possible for frontend and backend to work on the product at the same time, due to other projects or maybe because of planning, or maybe the team prefers to do backend-work and frontend-work in a certain order. With a component library the frontend is separated from the backend and the business logic. So the frontend-people can actually start working on UI components before the backend-work have even begun.
 
-Just to be clear: I'm not advocating for frontend-silos and backend-silos here, I'm just saying it's nice to be able to work without depending on each other from the beginning. That said, frontend-people and backend-people should always have a very close dialog all the way through a project and agree on things like how the data should look, API endpoints etc.
+Just to be clear: I'm not advocating for frontend-silos and backend-silos here, I'm just saying it's nice to be able to work without depending on each other from the beginning. That said, frontend-people and backend-people should always have a very close dialog all the way through a project and agree on things like how the data should look and what API endpoints are needed and so on.
 
 ## Which component library should I use?
 
@@ -192,7 +192,7 @@ Last, but not least I learned about [Storybook](https://storybook.js.org/). I th
 > 
 > &mdash; <cite>Brad Frost</cite>
 
-At first I must admit that I was a bit hesitant to jump right into it, since IMO in the beginning Storybook was a tool very much targeted at React developers (which I'm not) and you as an author needed to write a lot of JavaScript just to get anything into Storybook. In comparison, it was very easy to add a component in Pattern Lab and Fractal, just add a templating-file in a folder and you're done. But luckily, later on Storybook became very inclusive to other frameworks than React (Vue, Angular, Web Components, Ember, HTML, Svelte, Preact etc.) and people with a more CSS-ish background than JS, which is great.
+At first I must admit that I was a bit hesitant to jump right into it, since IMO in the beginning Storybook was a tool very much targeted at React developers (which I'm not) and you as an author needed to write a lot of JavaScript just to get anything into Storybook. In comparison, it was very easy to add a component in Pattern Lab and Fractal, just add a templating-file in a folder and you're done. But luckily, later on Storybook became very inclusive to other frameworks than React. It now supports Vue, Angular, Web Components, Ember, HTML, Svelte and Preact and people with a more CSS-ish background than JS, which is great.
 
 At this point in time I really like Storybook and the way it's headed, also with the support of the [MDX](https://mdxjs.com/) format, which lets you weave interactive components into markdown - which is a match made in heaven in regards to UI documentation. Another very important thing to mention about Storybook is it's popularity. There are over 1000 contributors and more than 8 million installs per month. There are also a lot of [addons](https://storybook.js.org/addons).
 
