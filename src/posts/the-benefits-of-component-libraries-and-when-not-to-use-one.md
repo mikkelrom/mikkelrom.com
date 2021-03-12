@@ -46,7 +46,7 @@ tags:
 
 ## Intro
 
-Design systems have been a hot topic for a few years now, and thereby also component libraries. But what makes them so special and what's all the hype about?
+{% first-letter "Design systems have been a hot topic for a few years now, and thereby also component libraries. But what makes them so special and what's all the hype about?" %}
 
 Why can't we just go on and build digital products the classic way as we have been doing it since the beginning of the web? I mean: You have a website. That website consists of some files. Then you either need to add a feature or fix a bug on that website, so you make your changes to the files and deploy them and you're done (very much a simplified version, I know).
 
@@ -164,7 +164,9 @@ Being able to run just the frontend-part of a project which doesn't care if it's
 
 ### #11 No dependency on backend
 
-Sometimes it's not possible for frontend and backend to work on the product at the same time, due to other projects or maybe because of planning, or maybe the team prefers to do backend-work and frontend-work in a certain order. With a component library the frontend is separated from the backend and the business logic. So the frontend-people can actually start working on UI components before the backend-work have even begun.
+Sometimes it's not possible for frontend and backend to work on the product at the same time, due to other projects or maybe because of planning, or maybe the team prefers to do backend-work and frontend-work in a certain order. 
+
+With a component library the frontend is separated from the backend and the business logic. So the frontend-people can actually start working on UI components before the backend-work have even begun. It makes sense to begin prototyping on HTML-components together with the designer and/or UX'er as early as possible. A component library makes this possible.
 
 Just to be clear: I'm not advocating for frontend-silos and backend-silos here, I'm just saying it's nice to be able to work without depending on each other from the beginning. That said, frontend-people and backend-people should always have a very close dialog all the way through a project and agree on things like how the data should look and what API endpoints are needed and so on.
 
