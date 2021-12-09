@@ -5,7 +5,8 @@ permalink: me/index.html
 ---
 ![Mikkel Rom](/images/mikkel.jpg)
 
-My name is Mikkel Rom, I'm currently Lead Frontend Developer at [Knowit](https://www.knowit.dk/) in Aarhus, Denmark.
+{% first-letter "My name is Mikkel Rom, I'm currently Lead Frontend Developer at [Knowit](https://www.knowit.dk/) in Aarhus, Denmark." %}
+
 This is my blog where I'll occasionally write about things related to web development 👨‍💻
 
 I have a passion for web development and collaborating with people from other disciplines.
