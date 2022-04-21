@@ -46,12 +46,12 @@ These are features that you would expect from a modern IDE (like VS Code), to be
 
 These are features that I personally think are really awesome, and not necessarily something that every editor has (WebStorm does, of course)
 
-* [Search experience](https://www.jetbrains.com/help/webstorm/finding-and-replacing-text-in-project.html) - this is by all means my most favourite feature of WebStorm. Compared to VS Code, this is to me 100 times better. 
+* [Searching - Find in Files](https://www.jetbrains.com/help/webstorm/finding-and-replacing-text-in-project.html) **⌘⇧F** (Mac) **CTRL+F** (Windows) - this is by all means my most favourite feature of WebStorm. Compared to VS Code, this is to me 100 times better. 
 
   * I like that you have the search results in a modal window (instead of it being hidden away in a sidebar 🙄).
   * I like that you get a preview pane showing the selected file/search result. You can even select text and copy it, you can even edit the file in the preview pane.
   * In new projects, it's very common that the search results are polluted with too many results from dist-folders and minified files and so on. WebStorm makes it easy to exclude entire folders by right-clicking a folder and choosing "Mark Directory As", "Excluded". Easy peasy!
-* [Searching everywhere](https://www.jetbrains.com/help/webstorm/searching-everywhere.html)
+* Searching everywhere **Double ⇧** 
 * [TODO tree](https://www.jetbrains.com/help/webstorm/using-todo.html)
 * [Test runner](https://www.jetbrains.com/help/webstorm/test-runner-tab.html)
 * [Auto import](https://www.jetbrains.com/help/webstorm/settings-auto-import.html)
