@@ -3,13 +3,13 @@ layout: layouts/post.njk
 title: What I like about WebStorm
 metaDesc: These awesome features in WebStorm are the reason why I can't "just
   use VS Code like everyone else"
-socialImage: images/webstorm-logo.svg
+socialImage: images/webstorm.jpg
 date: 2022-04-21T20:22:49.151Z
 tags:
   - webstorm
   - editors
 ---
-![WebStorm logo](images/webstorm-logo.svg "WebStorm logo")
+![WebStorm code editor](/images/webstorm.jpg)
 
 More than once in my career I have been talking to colleagues about code editors or IDE’s. Stuff like what’s the best one and why? What features are need-to-haves? What is it that makes the editor feel so good?
 
