@@ -1,6 +1,8 @@
 ---
 layout: layouts/post.njk
-title: What I like about WebStorm
+title: What I like about WebStorm and why
+metaDesc: These awesome features in WebStorm are the reason why I can't "just
+  use VS Code like everyone else"
 socialImage: images/webstorm-logo.svg
 date: 2022-04-21T20:22:49.151Z
 tags:
