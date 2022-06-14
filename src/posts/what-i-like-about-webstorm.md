@@ -37,11 +37,11 @@ These are features that you would expect from a modern IDE (like VS Code), to be
 * Common keyboard shortcuts
 
   * [Comment with Line Comment](https://www.jetbrains.com/webstorm/guide/tips/comment-out-code/) **⌘+/** (Mac) **CTRL+/** (Windows)
+  * [Move current line up](https://www.jetbrains.com/idea/guide/tips/move-line/) **⌥⇧↑** (Mac) or **Alt+Shift+Up Arrow** (Windows)
   * [Move current line down](https://www.jetbrains.com/idea/guide/tips/move-line/) **⌥⇧↓** (Mac) or **Alt+Shift+Down Arrow** (Windows)
   * Duplicate line **⌘+D** (Mac) or **CTRL+D** (Windows)
   * Go to line **⌘+L** (Mac) or **CTRL+L** (Windows)
   * Close file **⌘+W** (Mac) or **CTRL+W** (Windows)
-  * [Move current line up](https://www.jetbrains.com/idea/guide/tips/move-line/) **⌥⇧↑** (Mac) or **Alt+Shift+Up Arrow** (Windows)
 
 ### Awesome features
 
@@ -84,7 +84,7 @@ Currently I use the [Night Owl](https://plugins.jetbrains.com/plugin/10936-night
 * [Import Cost](https://plugins.jetbrains.com/plugin/9970-import-cost)
 * [Material Theme UI](https://plugins.jetbrains.com/plugin/8006-material-theme-ui)
 * [MDX](https://plugins.jetbrains.com/plugin/14944-mdx)
-* [Night Owl Theme](https://plugins.jetbrains.com/plugin/10936-night-owl-theme)
+* [Gradianto Theme](https://plugins.jetbrains.com/plugin/12334-gradianto)
 * [PostCSS](https://plugins.jetbrains.com/plugin/8578-postcss)
 * [Rainbow Brackets](https://plugins.jetbrains.com/plugin/10080-rainbow-brackets)
 
