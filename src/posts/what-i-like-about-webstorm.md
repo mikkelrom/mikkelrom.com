@@ -36,11 +36,12 @@ These are features that you would expect from a modern IDE (like VS Code), to be
 * [Major JS framework support](https://www.jetbrains.com/help/webstorm/vue-js.html) (Vue, React, Angular, Svelte etc.)
 * Common keyboard shortcuts
 
-  * [Move current line up](https://www.jetbrains.com/idea/guide/tips/move-line/) **⌥⇧↑** (Mac) or **Alt+Shift+Up Arrow** (Windows)
+  * [Comment with Line Comment](https://www.jetbrains.com/webstorm/guide/tips/comment-out-code/) **⌘+/** (Mac) **CTRL+/** (Windows)
   * [Move current line down](https://www.jetbrains.com/idea/guide/tips/move-line/) **⌥⇧↓** (Mac) or **Alt+Shift+Down Arrow** (Windows)
   * Duplicate line **⌘+D** (Mac) or **CTRL+D** (Windows)
   * Go to line **⌘+L** (Mac) or **CTRL+L** (Windows)
   * Close file **⌘+W** (Mac) or **CTRL+W** (Windows)
+  * [Move current line up](https://www.jetbrains.com/idea/guide/tips/move-line/) **⌥⇧↑** (Mac) or **Alt+Shift+Up Arrow** (Windows)
 
 ### Awesome features
 
@@ -75,6 +76,7 @@ Currently I use the [Night Owl](https://plugins.jetbrains.com/plugin/10936-night
 * I have enabled “[Mark modified (*)](https://www.jetbrains.com/help/idea/settings-editor-tabs.html)”, because I like to see which files have unsaved changes.
 * For Prettier, I use this Run for files pattern: `{**/*,*}.{js,ts,jsx,tsx}`. I also enable both the “On ‘Reformat Code’ action” checkmark and the “On save” checkmark.
 * I like to add “*.cshtml” to the HTML filetype, under Settings, Editor, File Types, Recognized File Types. This makes WebStorm work better with HTML in a cshtml file, which is a huge improvement. This tip should work for most filetypes that are close to being HTML.
+* I have added an extra keyboard shortcut using [Keymap](https://www.jetbrains.com/help/webstorm/settings-keymap.html) so that I can use **⌘+i** (Mac) to "Comment with Line Comment". The default is **⌘+/** (Mac) **CTRL+/** (Windows).
 
 ### My WebStorm extensions
 
