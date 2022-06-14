@@ -4,7 +4,7 @@ title: What I like about WebStorm
 metaDesc: These awesome features in WebStorm are the reason why I can't "just
   use VS Code like everyone else"
 socialImage: images/webstorm.jpg
-date: 2022-04-21T20:22:49.151Z
+date: 2022-06-14T20:30:41.999Z
 tags:
   - webstorm
   - editors
