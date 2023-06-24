@@ -12,7 +12,7 @@
     "html-minifier": "^4.0.0",
     "json-to-scss": "^1.6.2",
     "sass": "^1.49.7",
-    "semver": "^7.3.5",
+    "semver": "^7.5.2",
     "slugify": "^1.6.5",
     "speedlify-score": "^2.0.2",
     "stalfos": "github:hankchizljaw/stalfos#c8971d22726326cfc04089b2da4d51eeb1ebb0eb",
