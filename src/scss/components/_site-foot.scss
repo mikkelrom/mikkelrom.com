@@ -42,3 +42,11 @@
     text-decoration: none;
   }
 }
+
+.green-website-wrapper {
+  margin-top: 2rem;
+  text-align: center;
+  > a {
+    border-bottom: none;
+  }
+}
