@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' https://www.google-analytics.com https://api.thegreenwebfoundation.org; script-src 'self' 'unsafe-inline' https://static.codepen.io https://www.googletagmanager.com https://identity.netlify.com https://www.google-analytics.com https://speedlify-benchmarks.netlify.app https://consent.cookiebot.com https://consentcdn.cookiebot.com; style-src 'unsafe-inline'; object-src 'none'; font-src 'self'; connect-src 'self' https://speedlify-benchmarks.netlify.app https://www.google-analytics.com https://region1.google-analytics.com https://consentcdn.cookiebot.com; frame-src https://codepen.io https://consentcdn.cookiebot.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex">
+
+
+    <!--  CookieBot-->
+<!--    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2959233c-7777-44d8-8beb-d389bd10f39d" data-blockingmode="auto" type="text/javascript"></script>-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170707356-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-170707356-1');
+    </script>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
+    <link rel="icon" href="{{ site.faviconPath }}" type="image/png" />
+    {% include "partials/global/meta-info.njk" %}
+    <script>document.documentElement.classList.remove('no-js');</script>
+    <script defer src="/js/components/speedlify-score.js"></script>
+    <style>{% include "assets/css/global.css" %}</style>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+
+
+{% block content %}
+<main id="main-content" tabindex="-1">
+    <article class="[ post ] [ h-entry ]">
+
+        <div class="[ post__body ] [ inner-wrapper ] [ leading-loose pad-top-900 {{ 'pad-bottom-900' if not site.enableThirdPartyComments }} text-500 ] [ sf-flow ] [ e-content ]">
+            {{ content | safe }}
+        </div>
+    </article>
+</main>
+{% endblock %}
+
+<script type="module" src="/js/components/theme-toggle.js" defer></script>
+</body>
+</html>
