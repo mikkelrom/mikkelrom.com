@@ -21,7 +21,9 @@ So let's have a look at a super simple example, that also gives away the answer 
   media-query specificity</a> by Mikkel Rom Engholm (<a href="https://codepen.io/mikkelrom">@mikkelrom</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
+
 
 If we take a closer look at the CSS in Chrome dev-tools, we can also see that the media-query doesn't affect it at all.
  
