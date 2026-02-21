@@ -14,6 +14,11 @@
       "text": "About me",
       "url": "/me",
       "external": false
+    },
+    {
+      "text": "BMW Vision EV",
+      "url": "/bmw-demo",
+      "external": false
     }
   ]
 }
