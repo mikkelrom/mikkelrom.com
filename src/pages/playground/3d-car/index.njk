@@ -1,6 +1,7 @@
 ---
-permalink: /bmw-demo/
+permalink: /playground/3d-car/
 eleventyExcludeFromCollections: true
+layout: false
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -241,7 +242,7 @@ eleventyExcludeFromCollections: true
 
   <!-- Top bar -->
   <div id="top-bar">
-    <a href="/" class="brand">BMW</a>
+    <a href="/" class="brand">mikkelrom.com / playground / 3D Car</a>
     <a href="/">← Back to site</a>
   </div>
 
@@ -259,10 +260,10 @@ eleventyExcludeFromCollections: true
   <!-- Controls -->
   <div id="controls-panel">
     <div class="color-options">
-      <div class="color-swatch active" data-color="0x9822dc" style="background:#9822dc"></div>
+      <div class="color-swatch" data-color="0x9822dc" style="background:#9822dc"></div>
       <div class="color-swatch" data-color="0xeed32c" style="background:#eed32c"></div> 
       <div class="color-swatch" data-color="0x16da0f" style="background:#16da0f"></div>
-      <div class="color-swatch" data-color="0x0856e5" style="background:#0856e5"></div>
+      <div class="color-swatch active" data-color="0x0856e5" style="background:#0856e5"></div>
       <div class="color-swatch" data-color="0x1c1c1c" style="background:#1c1c1c"></div>
     </div>
     <div class="btn-group">
@@ -402,7 +403,7 @@ eleventyExcludeFromCollections: true
 
     // ─── BODY MATERIAL (shared — color swatches change this) ──
     const bodyMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(0x9822dc),
+      color: new THREE.Color(0x0856e5),
       metalness: 0.9,
       roughness: 0.15,
       clearcoat: 1.0,
