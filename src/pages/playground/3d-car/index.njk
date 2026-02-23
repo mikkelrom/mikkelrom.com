@@ -1,0 +1,625 @@
+---
+permalink: /playground/3d-car/
+eleventyExcludeFromCollections: true
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMW i8 Vision EV — Interactive 3D Experience</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #canvas-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    canvas { display: block; }
+
+    /* Loading screen */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    #loader .logo-text {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #fff 0%, #999 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #loader .progress-bar {
+      width: 200px;
+      height: 2px;
+      background: #222;
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    #loader .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #1e88e5, #42a5f5);
+      transition: width 0.3s ease;
+      animation: loading 2s ease-in-out infinite;
+    }
+    @keyframes loading {
+      0% { width: 0%; margin-left: 0; }
+      50% { width: 60%; margin-left: 20%; }
+      100% { width: 0%; margin-left: 100%; }
+    }
+
+    /* Top bar */
+    #top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+    }
+    #top-bar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    #top-bar a:hover { opacity: 1; }
+    #top-bar .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      opacity: 1;
+    }
+
+    /* Info panel */
+    #info-panel {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 100;
+      max-width: 380px;
+    }
+    #info-panel h1 {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    #info-panel h1 span {
+      font-weight: 700;
+    }
+    #info-panel .subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #42a5f5;
+      margin-bottom: 1rem;
+    }
+    #info-panel .specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    #info-panel .spec-item .value {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    #info-panel .spec-item .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 0.15rem;
+    }
+
+    /* Controls panel */
+    #controls-panel {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .color-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color 0.3s, transform 0.2s;
+      position: relative;
+    }
+    .color-swatch:hover { transform: scale(1.15); }
+    .color-swatch.active { border-color: #fff; }
+
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 0.7rem;
+      font-family: inherit;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .btn.active {
+      background: rgba(255,255,255,0.2);
+      border-color: #42a5f5;
+    }
+
+    /* Hint text */
+    #hint {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      z-index: 100;
+      transition: opacity 1s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #info-panel { left: 1rem; bottom: 8rem; max-width: 280px; }
+      #info-panel h1 { font-size: 1.4rem; }
+      #controls-panel { bottom: 1.5rem; right: 1rem; }
+      #top-bar { padding: 0 1rem; }
+    }
+    
+    footer {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading screen -->
+  <div id="loader">
+    <div class="logo-text">BMW</div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+  </div>
+
+  <!-- Top bar -->
+  <div id="top-bar">
+    <a href="/" class="brand">mikkelrom.com / playground / 3D Car</a>
+    <a href="/">← Back to site</a>
+  </div>
+
+  <!-- 3D Canvas -->
+  <div id="canvas-container"></div>
+
+  <!-- Info panel -->
+  <div id="info-panel">
+    <h1>BMW i8 Vision EV</h1>
+    <div style="margin-top:1rem;font-size:0.6rem;color:#555;letter-spacing:0.05em;">
+      3D Model: <a href="https://sketchfab.com/3d-models/bmw-i8-vision-16136c2c47b54b39ae7fffb3a1415f30" target="_blank" rel="noopener" style="color:#666;text-decoration:underline;">BMW i8 Vision</a> by hartwelkisaka (CC-BY)
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div id="controls-panel">
+    <div class="color-options">
+      <div class="color-swatch" data-color="0x9822dc" style="background:#9822dc"></div>
+      <div class="color-swatch" data-color="0xeed32c" style="background:#eed32c"></div> 
+      <div class="color-swatch" data-color="0x16da0f" style="background:#16da0f"></div>
+      <div class="color-swatch active" data-color="0x0856e5" style="background:#0856e5"></div>
+      <div class="color-swatch" data-color="0x1c1c1c" style="background:#1c1c1c"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn active" data-view="orbit" id="btn-orbit">Orbit</button>
+      <button class="btn" data-view="front" id="btn-front">Front</button>
+      <button class="btn" data-view="side" id="btn-side">Side</button>
+      <button class="btn" data-view="rear" id="btn-rear">Rear</button>
+    </div>
+  </div>
+
+  <div id="hint">Drag to rotate · Scroll to zoom</div>
+
+  <!-- Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+    // ─── SCENE SETUP ─────────────────────────────────────
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(6, 3, 8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxPolarAngle = Math.PI / 2.05;
+    controls.minDistance = 5;
+    controls.maxDistance = 20;
+    controls.target.set(0, 0.8, 0);
+
+    // ─── ENVIRONMENT ─────────────────────────────────────
+    function createEnvironment() {
+      // Gradient background
+      const bgCanvas = document.createElement('canvas');
+      bgCanvas.width = 2;
+      bgCanvas.height = 512;
+      const ctx = bgCanvas.getContext('2d');
+      const grad = ctx.createLinearGradient(0, 0, 0, 512);
+      grad.addColorStop(0, '#1a1a2e');
+      grad.addColorStop(0.5, '#16213e');
+      grad.addColorStop(1, '#0a0a0a');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 2, 512);
+      const bgTexture = new THREE.CanvasTexture(bgCanvas);
+      scene.background = bgTexture;
+
+      // Environment map for reflections
+      const envScene = new THREE.Scene();
+      const envCamera = new THREE.CubeCamera(0.1, 100, new THREE.WebGLCubeRenderTarget(256, {
+        format: THREE.RGBAFormat,
+        generateMipmaps: true,
+        minFilter: THREE.LinearMipmapLinearFilter
+      }));
+
+      // Create a colored box for env reflections
+      const envGeo = new THREE.SphereGeometry(50, 32, 32);
+      const envMat = new THREE.MeshBasicMaterial({
+        side: THREE.BackSide,
+        color: 0x111122
+      });
+      const envMesh = new THREE.Mesh(envGeo, envMat);
+      envScene.add(envMesh);
+
+      // Add some bright spots for reflections
+      const lightGeo = new THREE.PlaneGeometry(20, 5);
+      const lightMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+      const lightPanel1 = new THREE.Mesh(lightGeo, lightMat);
+      lightPanel1.position.set(0, 10, 0);
+      lightPanel1.rotation.x = Math.PI / 2;
+      envScene.add(lightPanel1);
+
+      const lightPanel2 = new THREE.Mesh(lightGeo.clone(), lightMat.clone());
+      lightPanel2.position.set(10, 5, 0);
+      lightPanel2.rotation.y = -Math.PI / 2;
+      envScene.add(lightPanel2);
+
+      const lightPanel3 = new THREE.Mesh(lightGeo.clone(), lightMat.clone());
+      lightPanel3.position.set(-10, 5, 0);
+      lightPanel3.rotation.y = Math.PI / 2;
+      envScene.add(lightPanel3);
+
+      envCamera.position.set(0, 1, 0);
+      envCamera.update(renderer, envScene);
+
+      return envCamera.renderTarget.texture;
+    }
+
+    const envMap = createEnvironment();
+
+    // ─── GROUND PLANE ────────────────────────────────────
+    function createGround() {
+      const groundGeo = new THREE.CircleGeometry(30, 64);
+      const groundMat = new THREE.MeshStandardMaterial({
+        color: 0x080808,
+        metalness: 0.8,
+        roughness: 0.3,
+        envMap: envMap,
+        envMapIntensity: 0.5
+      });
+      const ground = new THREE.Mesh(groundGeo, groundMat);
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = -0.01;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // Subtle ring detail
+      const ringGeo = new THREE.RingGeometry(4, 4.05, 64);
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x1a1a2a, side: THREE.DoubleSide });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.y = 0.001;
+      scene.add(ring);
+    }
+    createGround();
+
+    // ─── BODY MATERIAL (shared — color swatches change this) ──
+    const bodyMaterial = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(0x0856e5),
+      metalness: 0.9,
+      roughness: 0.15,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05,
+      envMap: envMap,
+      envMapIntensity: 1.5
+    });
+
+    // ─── CAR GROUP ───────────────────────────────────────
+    const carGroup = new THREE.Group();
+    scene.add(carGroup);
+
+    // ─── LOAD 3D MODEL ───────────────────────────────────
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
+
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.setDRACOLoader(dracoLoader);
+
+    const progressFill = document.querySelector('#loader .progress-fill');
+    progressFill.style.animation = 'none';
+
+    gltfLoader.load('/models/bmw-i8.glb',
+      (gltf) => {
+        const model = gltf.scene;
+
+        // Auto-scale to ~5 units
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 5 / maxDim;
+        model.scale.setScalar(scale);
+
+        // Recompute after scaling
+        box.setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+
+        // Center horizontally and sit on ground plane
+        model.position.x -= center.x;
+        model.position.z -= center.z;
+        model.position.y -= box.min.y;
+
+        // Traverse meshes: shadows, env map, identify body
+        const BODY_MATERIAL = 'Material__32';
+        model.traverse((child) => {
+          if (!child.isMesh) return;
+          child.castShadow = true;
+          child.receiveShadow = true;
+          if (child.material) {
+            child.material.envMap = envMap;
+            child.material.envMapIntensity = 1.0;
+            child.material.needsUpdate = true;
+          }
+          // Replace body paint material
+          if (child.material && child.material.name === BODY_MATERIAL) {
+            child.material = bodyMaterial;
+          }
+        });
+
+        carGroup.add(model);
+
+        // Update camera targets to actual model center
+        const modelCenter = new THREE.Vector3();
+        new THREE.Box3().setFromObject(carGroup).getCenter(modelCenter);
+        const cy = modelCenter.y;
+        controls.target.set(0, cy, 0);
+        views.orbit.target.set(0, cy, 0);
+        views.front.target.set(0, cy, 0);
+        views.side.target.set(0, cy, 0);
+        views.rear.target.set(0, cy, 0);
+
+        // Hide loader
+        document.getElementById('loader').classList.add('hidden');
+      },
+      (progress) => {
+        if (progress.lengthComputable) {
+          const pct = (progress.loaded / progress.total) * 100;
+          progressFill.style.width = pct + '%';
+        }
+      },
+      (error) => {
+        console.error('Error loading model:', error);
+        document.getElementById('loader').classList.add('hidden');
+      }
+    );
+
+    // ─── LIGHTING ────────────────────────────────────────
+    // Ambient
+    const ambientLight = new THREE.AmbientLight(0x222233, 0.5);
+    scene.add(ambientLight);
+
+    // Key light (warm, from top-right-front)
+    const keyLight = new THREE.DirectionalLight(0xfff5e6, 2.0);
+    keyLight.position.set(5, 8, 3);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.camera.near = 0.5;
+    keyLight.shadow.camera.far = 25;
+    keyLight.shadow.camera.left = -5;
+    keyLight.shadow.camera.right = 5;
+    keyLight.shadow.camera.top = 5;
+    keyLight.shadow.camera.bottom = -5;
+    keyLight.shadow.bias = -0.001;
+    scene.add(keyLight);
+
+    // Fill light (cool, from the left)
+    const fillLight = new THREE.DirectionalLight(0xb0c4de, 0.8);
+    fillLight.position.set(-5, 4, -2);
+    scene.add(fillLight);
+
+    // Rim light (from behind)
+    const rimLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    rimLight.position.set(0, 3, -6);
+    scene.add(rimLight);
+
+    // Top light (overhead studio)
+    const topLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    topLight.position.set(0, 10, 0);
+    scene.add(topLight);
+
+    // Ground bounce
+    const bounceLight = new THREE.DirectionalLight(0x1a1a3e, 0.3);
+    bounceLight.position.set(0, -2, 0);
+    scene.add(bounceLight);
+
+    // Subtle blue accent lights
+    const accentLight1 = new THREE.PointLight(0x1e88e5, 0.4, 10);
+    accentLight1.position.set(-3, 0.5, 0);
+    scene.add(accentLight1);
+
+    const accentLight2 = new THREE.PointLight(0x1e88e5, 0.3, 10);
+    accentLight2.position.set(3, 0.5, 0);
+    scene.add(accentLight2);
+
+    // ─── ANIMATION ───────────────────────────────────────
+    let autoRotate = true;
+    let targetCameraPos = null;
+    let targetLookAt = null;
+    let animatingCamera = false;
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Auto-rotate the car on turntable
+      if (autoRotate && !animatingCamera) {
+        carGroup.rotation.y += 0.003;
+      }
+
+      // Camera transition
+      if (animatingCamera && targetCameraPos) {
+        camera.position.lerp(targetCameraPos, 0.04);
+        controls.target.lerp(targetLookAt, 0.04);
+
+        if (camera.position.distanceTo(targetCameraPos) < 0.05) {
+          animatingCamera = false;
+        }
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    // ─── CAMERA VIEWS ────────────────────────────────────
+    const views = {
+      orbit: { pos: new THREE.Vector3(6, 3, 8), target: new THREE.Vector3(0, 0.8, 0) },
+      front: { pos: new THREE.Vector3(-8, 2, 0), target: new THREE.Vector3(0, 0.7, 0) },
+      side: { pos: new THREE.Vector3(0, 2.5, 8), target: new THREE.Vector3(0, 0.7, 0) },
+      rear: { pos: new THREE.Vector3(8, 2.5, 2), target: new THREE.Vector3(0, 0.7, 0) }
+    };
+
+    function goToView(name) {
+      autoRotate = name === 'orbit';
+      const view = views[name];
+      targetCameraPos = view.pos.clone();
+      targetLookAt = view.target.clone();
+      animatingCamera = true;
+
+      document.querySelectorAll('.btn[data-view]').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.btn[data-view="${name}"]`).classList.add('active');
+    }
+
+    // ─── UI EVENT HANDLERS ───────────────────────────────
+    // View buttons
+    document.querySelectorAll('.btn[data-view]').forEach(btn => {
+      btn.addEventListener('click', () => goToView(btn.dataset.view));
+    });
+
+    // Color swatches
+    document.querySelectorAll('.color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        swatch.classList.add('active');
+        const color = parseInt(swatch.dataset.color);
+        bodyMaterial.color.setHex(color);
+      });
+    });
+
+    // Hide hint after first interaction
+    let hintVisible = true;
+    controls.addEventListener('start', () => {
+      if (hintVisible) {
+        document.getElementById('hint').style.opacity = '0';
+        hintVisible = false;
+      }
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ─── START ───────────────────────────────────────────
+    animate();
+  </script>
+</body>
+</html>
