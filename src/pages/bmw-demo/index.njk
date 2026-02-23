@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BMW Vision EV — Interactive 3D Experience</title>
+  <title>BMW i8 Vision EV — Interactive 3D Experience</title>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -222,10 +222,12 @@ eleventyExcludeFromCollections: true
     @media (max-width: 768px) {
       #info-panel { left: 1rem; bottom: 8rem; max-width: 280px; }
       #info-panel h1 { font-size: 1.4rem; }
-      #info-panel .specs { gap: 0.6rem; }
-      #info-panel .spec-item .value { font-size: 1.1rem; }
       #controls-panel { bottom: 1.5rem; right: 1rem; }
       #top-bar { padding: 0 1rem; }
+    }
+    
+    footer {
+      display: none;
     }
   </style>
 </head>
@@ -248,32 +250,20 @@ eleventyExcludeFromCollections: true
 
   <!-- Info panel -->
   <div id="info-panel">
-    <div class="subtitle">All-Electric Gran Coupé</div>
-    <h1>BMW <span>Vision EV</span></h1>
-    <div class="specs">
-      <div class="spec-item">
-        <div class="value">523</div>
-        <div class="label">HP Power</div>
-      </div>
-      <div class="spec-item">
-        <div class="value">3.8s</div>
-        <div class="label">0–100 km/h</div>
-      </div>
-      <div class="spec-item">
-        <div class="value">625</div>
-        <div class="label">km Range</div>
-      </div>
+    <h1>BMW i8 Vision EV</h1>
+    <div style="margin-top:1rem;font-size:0.6rem;color:#555;letter-spacing:0.05em;">
+      3D Model: <a href="https://sketchfab.com/3d-models/bmw-i8-vision-16136c2c47b54b39ae7fffb3a1415f30" target="_blank" rel="noopener" style="color:#666;text-decoration:underline;">BMW i8 Vision</a> by hartwelkisaka (CC-BY)
     </div>
   </div>
 
   <!-- Controls -->
   <div id="controls-panel">
     <div class="color-options">
-      <div class="color-swatch active" data-color="0x1a1a2e" style="background:#1a1a2e" title="Tanzanite Blue"></div>
-      <div class="color-swatch" data-color="0x8b0000" style="background:#8b0000" title="Melbourne Red"></div>
-      <div class="color-swatch" data-color="0xf5f5f5" style="background:#f5f5f5" title="Alpine White"></div>
-      <div class="color-swatch" data-color="0x1c1c1c" style="background:#1c1c1c" title="Black Sapphire"></div>
-      <div class="color-swatch" data-color="0x2d4a3e" style="background:#2d4a3e" title="British Racing Green"></div>
+      <div class="color-swatch active" data-color="0x9822dc" style="background:#9822dc"></div>
+      <div class="color-swatch" data-color="0xeed32c" style="background:#eed32c"></div> 
+      <div class="color-swatch" data-color="0x16da0f" style="background:#16da0f"></div>
+      <div class="color-swatch" data-color="0x0856e5" style="background:#0856e5"></div>
+      <div class="color-swatch" data-color="0x1c1c1c" style="background:#1c1c1c"></div>
     </div>
     <div class="btn-group">
       <button class="btn active" data-view="orbit" id="btn-orbit">Orbit</button>
@@ -298,6 +288,8 @@ eleventyExcludeFromCollections: true
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
     // ─── SCENE SETUP ─────────────────────────────────────
     const container = document.getElementById('canvas-container');
@@ -408,11 +400,9 @@ eleventyExcludeFromCollections: true
     }
     createGround();
 
-    // ─── MATERIALS ───────────────────────────────────────
-    let bodyColor = new THREE.Color(0x1a1a2e);
-
+    // ─── BODY MATERIAL (shared — color swatches change this) ──
     const bodyMaterial = new THREE.MeshPhysicalMaterial({
-      color: bodyColor,
+      color: new THREE.Color(0x9822dc),
       metalness: 0.9,
       roughness: 0.15,
       clearcoat: 1.0,
@@ -421,468 +411,83 @@ eleventyExcludeFromCollections: true
       envMapIntensity: 1.5
     });
 
-    const darkTrimMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x0a0a0a,
-      metalness: 0.5,
-      roughness: 0.2,
-      clearcoat: 0.8,
-      envMap: envMap,
-      envMapIntensity: 1.0
-    });
-
-    const chromeMaterial = new THREE.MeshStandardMaterial({
-      color: 0xcccccc,
-      metalness: 1.0,
-      roughness: 0.05,
-      envMap: envMap,
-      envMapIntensity: 2.0
-    });
-
-    const glassMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x111122,
-      metalness: 0.1,
-      roughness: 0.0,
-      transmission: 0.9,
-      thickness: 0.5,
-      envMap: envMap,
-      envMapIntensity: 0.5,
-      transparent: true,
-      opacity: 0.3
-    });
-
-    const headlightMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      emissive: 0xaaddff,
-      emissiveIntensity: 2.0,
-      metalness: 0.0,
-      roughness: 0.0
-    });
-
-    const taillightMaterial = new THREE.MeshStandardMaterial({
-      color: 0xff0000,
-      emissive: 0xff2222,
-      emissiveIntensity: 1.5,
-      metalness: 0.0,
-      roughness: 0.1
-    });
-
-    const tireMaterial = new THREE.MeshStandardMaterial({
-      color: 0x1a1a1a,
-      metalness: 0.0,
-      roughness: 0.9
-    });
-
-    const rimMaterial = new THREE.MeshStandardMaterial({
-      color: 0x888888,
-      metalness: 0.95,
-      roughness: 0.1,
-      envMap: envMap,
-      envMapIntensity: 1.5
-    });
-
-    const bluAccentMaterial = new THREE.MeshStandardMaterial({
-      color: 0x1e88e5,
-      emissive: 0x1565c0,
-      emissiveIntensity: 0.5,
-      metalness: 0.3,
-      roughness: 0.3
-    });
-
     // ─── CAR GROUP ───────────────────────────────────────
     const carGroup = new THREE.Group();
     scene.add(carGroup);
 
-    // Helper function for rounded box shapes
-    function createRoundedBox(w, h, d, r, s) {
-      const shape = new THREE.Shape();
-      const x = -w / 2, y = -h / 2;
-      shape.moveTo(x + r, y);
-      shape.lineTo(x + w - r, y);
-      shape.quadraticCurveTo(x + w, y, x + w, y + r);
-      shape.lineTo(x + w, y + h - r);
-      shape.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      shape.lineTo(x + r, y + h);
-      shape.quadraticCurveTo(x, y + h, x, y + h - r);
-      shape.lineTo(x, y + r);
-      shape.quadraticCurveTo(x, y, x + r, y);
+    // ─── LOAD 3D MODEL ───────────────────────────────────
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
 
-      const extrudeSettings = { depth: d, bevelEnabled: true, bevelThickness: r * 0.5, bevelSize: r * 0.5, bevelSegments: s || 4 };
-      const geo = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-      geo.translate(0, 0, -d / 2);
-      return geo;
-    }
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.setDRACOLoader(dracoLoader);
 
-    function buildCar() {
-      // ── LOWER BODY ──
-      const lowerBodyGeo = createRoundedBox(4.8, 0.8, 2.0, 0.15, 4);
-      const lowerBody = new THREE.Mesh(lowerBodyGeo, bodyMaterial);
-      lowerBody.position.set(0, 0.45, 0);
-      lowerBody.castShadow = true;
-      carGroup.add(lowerBody);
+    const progressFill = document.querySelector('#loader .progress-fill');
+    progressFill.style.animation = 'none';
 
-      // ── UPPER BODY (Hood + Trunk area) ──
-      const upperShape = new THREE.Shape();
-      // Side profile of the upper body
-      upperShape.moveTo(-2.2, 0);
-      upperShape.lineTo(-1.8, 0);
-      upperShape.lineTo(-1.6, 0.35); // windshield start
-      upperShape.bezierCurveTo(-1.3, 0.7, -0.5, 0.8, 0, 0.82);
-      upperShape.bezierCurveTo(0.5, 0.8, 1.0, 0.75, 1.3, 0.55);
-      upperShape.lineTo(1.6, 0.3);  // rear window end
-      upperShape.lineTo(2.0, 0.15);
-      upperShape.lineTo(2.2, 0);
-      upperShape.lineTo(-2.2, 0);
+    gltfLoader.load('/models/bmw-i8.glb',
+      (gltf) => {
+        const model = gltf.scene;
 
-      const upperExtrudeSettings = { depth: 1.7, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.08, bevelSegments: 3 };
-      const upperBodyGeo = new THREE.ExtrudeGeometry(upperShape, upperExtrudeSettings);
-      upperBodyGeo.translate(0, 0, -0.85);
-      const upperBody = new THREE.Mesh(upperBodyGeo, bodyMaterial);
-      upperBody.position.set(0, 0.85, 0);
-      upperBody.castShadow = true;
-      carGroup.add(upperBody);
+        // Auto-scale to ~5 units
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 5 / maxDim;
+        model.scale.setScalar(scale);
 
-      // ── CABIN / GREENHOUSE (Glass) ──
-      const cabinShape = new THREE.Shape();
-      cabinShape.moveTo(-1.55, 0.02);
-      cabinShape.lineTo(-1.35, 0.3);
-      cabinShape.bezierCurveTo(-1.1, 0.58, -0.4, 0.65, 0, 0.67);
-      cabinShape.bezierCurveTo(0.4, 0.65, 0.8, 0.55, 1.1, 0.4);
-      cabinShape.lineTo(1.35, 0.18);
-      cabinShape.lineTo(1.5, 0.02);
-      cabinShape.lineTo(-1.55, 0.02);
+        // Recompute after scaling
+        box.setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
 
-      const cabinExtrudeSettings = { depth: 1.5, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 2 };
-      const cabinGeo = new THREE.ExtrudeGeometry(cabinShape, cabinExtrudeSettings);
-      cabinGeo.translate(0, 0, -0.75);
-      const cabin = new THREE.Mesh(cabinGeo, glassMaterial);
-      cabin.position.set(0, 0.88, 0);
-      carGroup.add(cabin);
+        // Center horizontally and sit on ground plane
+        model.position.x -= center.x;
+        model.position.z -= center.z;
+        model.position.y -= box.min.y;
 
-      // ── WINDOW PILLARS (A, B, C pillars) ──
-      const pillarMat = darkTrimMaterial;
-      const pillarGeo = new THREE.BoxGeometry(0.06, 0.5, 0.06);
+        // Traverse meshes: shadows, env map, identify body
+        const BODY_MATERIAL = 'Material__32';
+        model.traverse((child) => {
+          if (!child.isMesh) return;
+          child.castShadow = true;
+          child.receiveShadow = true;
+          if (child.material) {
+            child.material.envMap = envMap;
+            child.material.envMapIntensity = 1.0;
+            child.material.needsUpdate = true;
+          }
+          // Replace body paint material
+          if (child.material && child.material.name === BODY_MATERIAL) {
+            child.material = bodyMaterial;
+          }
+        });
 
-      // A-pillars (front)
-      [-0.72, 0.72].forEach(z => {
-        const aPillar = new THREE.Mesh(pillarGeo, pillarMat);
-        aPillar.position.set(-1.4, 1.15, z);
-        aPillar.rotation.z = 0.4;
-        carGroup.add(aPillar);
-      });
+        carGroup.add(model);
 
-      // B-pillars (middle)
-      [-0.72, 0.72].forEach(z => {
-        const bPillar = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.45, 0.06), pillarMat);
-        bPillar.position.set(-0.2, 1.15, z);
-        carGroup.add(bPillar);
-      });
+        // Update camera targets to actual model center
+        const modelCenter = new THREE.Vector3();
+        new THREE.Box3().setFromObject(carGroup).getCenter(modelCenter);
+        const cy = modelCenter.y;
+        controls.target.set(0, cy, 0);
+        views.orbit.target.set(0, cy, 0);
+        views.front.target.set(0, cy, 0);
+        views.side.target.set(0, cy, 0);
+        views.rear.target.set(0, cy, 0);
 
-      // C-pillars (rear)
-      [-0.68, 0.68].forEach(z => {
-        const cPillar = new THREE.Mesh(pillarGeo, pillarMat);
-        cPillar.position.set(1.15, 1.1, z);
-        cPillar.rotation.z = -0.35;
-        carGroup.add(cPillar);
-      });
-
-      // ── HOOD CHARACTER LINE ──
-      const hoodLineGeo = new THREE.BoxGeometry(1.5, 0.01, 0.01);
-      const hoodLine = new THREE.Mesh(hoodLineGeo, chromeMaterial);
-      hoodLine.position.set(-1.9, 0.92, 0);
-      hoodLine.rotation.z = 0.05;
-      carGroup.add(hoodLine);
-
-      // ── BMW KIDNEY GRILLE ──
-      function createKidneyGrille(offsetZ) {
-        const grillGroup = new THREE.Group();
-
-        // Grille outline
-        const outlineShape = new THREE.Shape();
-        outlineShape.moveTo(0, -0.15);
-        outlineShape.bezierCurveTo(0.18, -0.15, 0.22, -0.1, 0.22, 0);
-        outlineShape.bezierCurveTo(0.22, 0.1, 0.18, 0.2, 0, 0.2);
-        outlineShape.bezierCurveTo(-0.18, 0.2, -0.22, 0.1, -0.22, 0);
-        outlineShape.bezierCurveTo(-0.22, -0.1, -0.18, -0.15, 0, -0.15);
-
-        const grillGeo = new THREE.ExtrudeGeometry(outlineShape, { depth: 0.05, bevelEnabled: false });
-        const grillMesh = new THREE.Mesh(grillGeo, darkTrimMaterial);
-        grillMesh.rotation.y = Math.PI / 2;
-        grillGroup.add(grillMesh);
-
-        // Chrome surround
-        const surroundGeo = new THREE.TorusGeometry(0.19, 0.012, 8, 32);
-        const surround = new THREE.Mesh(surroundGeo, chromeMaterial);
-        surround.position.x = -0.03;
-        surround.rotation.y = Math.PI / 2;
-        surround.position.y = 0.025;
-        grillGroup.add(surround);
-
-        // Vertical slats
-        for (let i = -3; i <= 3; i++) {
-          const slatGeo = new THREE.BoxGeometry(0.06, 0.3, 0.008);
-          const slat = new THREE.Mesh(slatGeo, chromeMaterial);
-          slat.position.set(-0.02, 0.025, i * 0.05);
-          grillGroup.add(slat);
+        // Hide loader
+        document.getElementById('loader').classList.add('hidden');
+      },
+      (progress) => {
+        if (progress.lengthComputable) {
+          const pct = (progress.loaded / progress.total) * 100;
+          progressFill.style.width = pct + '%';
         }
-
-        // Blue accent (BMW i)
-        const accentGeo = new THREE.BoxGeometry(0.01, 0.35, 0.01);
-        const accent = new THREE.Mesh(accentGeo, bluAccentMaterial);
-        accent.position.set(-0.04, 0.025, 0);
-        grillGroup.add(accent);
-
-        grillGroup.position.set(-2.55, 0.65, offsetZ);
-        return grillGroup;
+      },
+      (error) => {
+        console.error('Error loading model:', error);
+        document.getElementById('loader').classList.add('hidden');
       }
-
-      carGroup.add(createKidneyGrille(0.15));
-      carGroup.add(createKidneyGrille(-0.15));
-
-      // ── HEADLIGHTS ──
-      function createHeadlight(z) {
-        const hlGroup = new THREE.Group();
-
-        // Main light housing
-        const housingGeo = new THREE.BoxGeometry(0.15, 0.08, 0.35);
-        const housing = new THREE.Mesh(housingGeo, darkTrimMaterial);
-        hlGroup.add(housing);
-
-        // LED strip (angular BMW style)
-        const ledShape = new THREE.Shape();
-        ledShape.moveTo(-0.15, 0);
-        ledShape.lineTo(0.15, 0);
-        ledShape.lineTo(0.12, 0.03);
-        ledShape.lineTo(-0.12, 0.03);
-        const ledGeo = new THREE.ExtrudeGeometry(ledShape, { depth: 0.02, bevelEnabled: false });
-        const led = new THREE.Mesh(ledGeo, headlightMaterial);
-        led.position.set(0, -0.01, -0.01);
-        led.rotation.y = Math.PI / 2;
-        hlGroup.add(led);
-
-        // DRL angel eye (BMW signature)
-        const angelGeo = new THREE.TorusGeometry(0.06, 0.008, 8, 32, Math.PI * 1.5);
-        const angel = new THREE.Mesh(angelGeo, headlightMaterial);
-        angel.rotation.y = Math.PI / 2;
-        angel.position.x = 0.01;
-        hlGroup.add(angel);
-
-        // Point light from headlight
-        const hlLight = new THREE.PointLight(0xaaddff, 0.5, 5);
-        hlLight.position.set(-0.2, 0, 0);
-        hlGroup.add(hlLight);
-
-        hlGroup.position.set(-2.52, 0.68, z);
-        return hlGroup;
-      }
-
-      carGroup.add(createHeadlight(0.7));
-      carGroup.add(createHeadlight(-0.7));
-
-      // ── TAIL LIGHTS ──
-      function createTaillight(z) {
-        const tlGroup = new THREE.Group();
-
-        // Housing
-        const housingGeo = new THREE.BoxGeometry(0.12, 0.12, 0.5);
-        const housing = new THREE.Mesh(housingGeo, darkTrimMaterial);
-        tlGroup.add(housing);
-
-        // LED bar
-        const ledGeo = new THREE.BoxGeometry(0.02, 0.06, 0.45);
-        const led = new THREE.Mesh(ledGeo, taillightMaterial);
-        led.position.x = 0.06;
-        tlGroup.add(led);
-
-        tlGroup.position.set(2.45, 0.75, z);
-        return tlGroup;
-      }
-
-      carGroup.add(createTaillight(0.6));
-      carGroup.add(createTaillight(-0.6));
-
-      // Tail light connecting bar (BMW style)
-      const tailBarGeo = new THREE.BoxGeometry(0.02, 0.025, 1.0);
-      const tailBar = new THREE.Mesh(tailBarGeo, taillightMaterial);
-      tailBar.position.set(2.52, 0.75, 0);
-      carGroup.add(tailBar);
-
-      // ── SIDE SKIRTS ──
-      [-0.95, 0.95].forEach(z => {
-        const skirtGeo = new THREE.BoxGeometry(3.2, 0.08, 0.03);
-        const skirt = new THREE.Mesh(skirtGeo, darkTrimMaterial);
-        skirt.position.set(0, 0.12, z);
-        carGroup.add(skirt);
-
-        // Blue accent line
-        const accentGeo = new THREE.BoxGeometry(2.0, 0.015, 0.015);
-        const accent = new THREE.Mesh(accentGeo, bluAccentMaterial);
-        accent.position.set(-0.2, 0.15, z * 1.02);
-        carGroup.add(accent);
-      });
-
-      // ── FRONT BUMPER / SPLITTER ──
-      const splitterGeo = new THREE.BoxGeometry(0.06, 0.04, 2.0);
-      const splitter = new THREE.Mesh(splitterGeo, darkTrimMaterial);
-      splitter.position.set(-2.55, 0.15, 0);
-      carGroup.add(splitter);
-
-      // Air intakes
-      [-0.55, 0.55].forEach(z => {
-        const intakeGeo = new THREE.BoxGeometry(0.08, 0.15, 0.4);
-        const intake = new THREE.Mesh(intakeGeo, darkTrimMaterial);
-        intake.position.set(-2.5, 0.3, z);
-        carGroup.add(intake);
-      });
-
-      // ── REAR DIFFUSER ──
-      const diffuserGeo = new THREE.BoxGeometry(0.08, 0.12, 1.8);
-      const diffuser = new THREE.Mesh(diffuserGeo, darkTrimMaterial);
-      diffuser.position.set(2.48, 0.18, 0);
-      carGroup.add(diffuser);
-
-      // Diffuser fins
-      for (let i = -3; i <= 3; i++) {
-        const finGeo = new THREE.BoxGeometry(0.12, 0.1, 0.015);
-        const fin = new THREE.Mesh(finGeo, darkTrimMaterial);
-        fin.position.set(2.48, 0.18, i * 0.22);
-        carGroup.add(fin);
-      }
-
-      // ── SIDE MIRRORS ──
-      [-0.9, 0.9].forEach(z => {
-        const mirrorGroup = new THREE.Group();
-        const stalkGeo = new THREE.BoxGeometry(0.15, 0.04, 0.04);
-        const stalk = new THREE.Mesh(stalkGeo, bodyMaterial);
-        mirrorGroup.add(stalk);
-
-        const headGeo = new THREE.BoxGeometry(0.12, 0.08, 0.15);
-        const head = new THREE.Mesh(headGeo, bodyMaterial);
-        head.position.set(-0.05, 0, z > 0 ? 0.08 : -0.08);
-        mirrorGroup.add(head);
-
-        mirrorGroup.position.set(-1.5, 1.0, z);
-        carGroup.add(mirrorGroup);
-      });
-
-      // ── WHEELS ──
-      function createWheel() {
-        const wheelGroup = new THREE.Group();
-
-        // Tire
-        const tireGeo = new THREE.TorusGeometry(0.35, 0.12, 16, 32);
-        const tire = new THREE.Mesh(tireGeo, tireMaterial);
-        tire.rotation.y = Math.PI / 2;
-        wheelGroup.add(tire);
-
-        // Rim face
-        const rimFaceGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.1, 32);
-        const rimFace = new THREE.Mesh(rimFaceGeo, rimMaterial);
-        rimFace.rotation.x = Math.PI / 2;
-        wheelGroup.add(rimFace);
-
-        // Rim outer ring
-        const rimRingGeo = new THREE.TorusGeometry(0.3, 0.025, 8, 32);
-        const rimRing = new THREE.Mesh(rimRingGeo, rimMaterial);
-        rimRing.rotation.y = Math.PI / 2;
-        wheelGroup.add(rimRing);
-
-        // Spokes (aerodynamic turbine style)
-        for (let i = 0; i < 7; i++) {
-          const angle = (i / 7) * Math.PI * 2;
-          const spokeGeo = new THREE.BoxGeometry(0.22, 0.02, 0.04);
-          const spoke = new THREE.Mesh(spokeGeo, rimMaterial);
-          spoke.position.set(
-            0,
-            Math.cos(angle) * 0.14,
-            Math.sin(angle) * 0.14
-          );
-          spoke.rotation.x = angle;
-          wheelGroup.add(spoke);
-        }
-
-        // Center cap
-        const capGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.12, 16);
-        const cap = new THREE.Mesh(capGeo, chromeMaterial);
-        cap.rotation.x = Math.PI / 2;
-        wheelGroup.add(cap);
-
-        // BMW logo ring on center cap
-        const logoRingGeo = new THREE.TorusGeometry(0.045, 0.005, 8, 16);
-        const logoRing = new THREE.Mesh(logoRingGeo, chromeMaterial);
-        logoRing.rotation.y = Math.PI / 2;
-        logoRing.position.x = 0.065;
-        wheelGroup.add(logoRing);
-
-        // Brake disc (visible behind spokes)
-        const brakeGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.02, 32);
-        const brakeMat = new THREE.MeshStandardMaterial({ color: 0x555555, metalness: 0.8, roughness: 0.3 });
-        const brake = new THREE.Mesh(brakeGeo, brakeMat);
-        brake.rotation.x = Math.PI / 2;
-        brake.position.x = -0.02;
-        wheelGroup.add(brake);
-
-        // Blue brake caliper
-        const caliperGeo = new THREE.BoxGeometry(0.04, 0.08, 0.06);
-        const caliper = new THREE.Mesh(caliperGeo, bluAccentMaterial);
-        caliper.position.set(0.01, 0.15, 0);
-        wheelGroup.add(caliper);
-
-        return wheelGroup;
-      }
-
-      // Position wheels
-      const wheelPositions = [
-        { x: -1.6, y: 0.35, z: 1.0 },   // front-left
-        { x: -1.6, y: 0.35, z: -1.0 },  // front-right
-        { x: 1.6, y: 0.35, z: 1.0 },    // rear-left
-        { x: 1.6, y: 0.35, z: -1.0 }    // rear-right
-      ];
-
-      const wheels = [];
-      wheelPositions.forEach((pos, i) => {
-        const wheel = createWheel();
-        wheel.position.set(pos.x, pos.y, pos.z);
-        if (pos.z < 0) wheel.rotation.y = Math.PI; // Flip right-side wheels
-        wheel.castShadow = true;
-        carGroup.add(wheel);
-        wheels.push(wheel);
-      });
-
-      // ── WHEEL ARCHES (fender flares) ──
-      wheelPositions.forEach(pos => {
-        const archGeo = new THREE.TorusGeometry(0.42, 0.06, 8, 16, Math.PI);
-        const arch = new THREE.Mesh(archGeo, bodyMaterial);
-        arch.position.set(pos.x, pos.y, pos.z > 0 ? 0.98 : -0.98);
-        arch.rotation.y = pos.z > 0 ? 0 : Math.PI;
-        arch.rotation.z = 0;
-        arch.castShadow = true;
-        carGroup.add(arch);
-      });
-
-      // ── ROOF RAILS (subtle) ──
-      [-0.55, 0.55].forEach(z => {
-        const railGeo = new THREE.BoxGeometry(1.5, 0.02, 0.02);
-        const rail = new THREE.Mesh(railGeo, chromeMaterial);
-        rail.position.set(-0.1, 1.72, z);
-        carGroup.add(rail);
-      });
-
-      // ── CHARGING PORT ──
-      const portGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.02, 16);
-      const port = new THREE.Mesh(portGeo, chromeMaterial);
-      port.rotation.x = Math.PI / 2;
-      port.position.set(-0.8, 0.65, 1.08);
-      carGroup.add(port);
-
-      const portRingGeo = new THREE.TorusGeometry(0.05, 0.008, 8, 16);
-      const portRing = new THREE.Mesh(portRingGeo, bluAccentMaterial);
-      portRing.position.set(-0.8, 0.65, 1.09);
-      carGroup.add(portRing);
-
-      return { wheels };
-    }
-
-    const car = buildCar();
+    );
 
     // ─── LIGHTING ────────────────────────────────────────
     // Ambient
@@ -946,15 +551,6 @@ eleventyExcludeFromCollections: true
       if (autoRotate && !animatingCamera) {
         carGroup.rotation.y += 0.003;
       }
-
-      // Animate wheel rotation (subtle spin)
-      car.wheels.forEach(wheel => {
-        wheel.children.forEach(child => {
-          if (child.geometry && child.geometry.type === 'TorusGeometry') {
-            // Spin the wheel slowly when on turntable
-          }
-        });
-      });
 
       // Camera transition
       if (animatingCamera && targetCameraPos) {
@@ -1022,11 +618,6 @@ eleventyExcludeFromCollections: true
     });
 
     // ─── START ───────────────────────────────────────────
-    // Hide loader
-    setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-    }, 1500);
-
     animate();
   </script>
 </body>

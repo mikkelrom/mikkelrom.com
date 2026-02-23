@@ -5,7 +5,7 @@ permalink: me/index.html
 ---
 ![Mikkel Rom](/images/mikkel.jpg)
 
-{% first-letter "My name is Mikkel Rom, I'm currently working as a Solution Architect & Team Lead at Knowit Denmark in Aarhus." %}
+{% first-letter "My name is Mikkel Rom, I'm currently working as a Solution Architect at Knowit Denmark in Aarhus." %}
 
 This is my blog where I'll occasionally write about things related to web technology 👨‍💻
 
