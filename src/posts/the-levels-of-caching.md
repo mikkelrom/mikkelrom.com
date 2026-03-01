@@ -5,8 +5,13 @@ date: 2026-03-01T09:00:00.000Z
 tags:
   - caching
 ---
-Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something more UI-related like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All this information needs to be persisted, or in other words, cached.
-There are many ways to do this, and each method has its own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to others as well.
+
+{% first-letter "Let's say you are building a website/webapp and suddenly you need to persist some information. " %} 
+
+That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something more UI-related like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". 
+
+All this information needs to be persisted, or in other words, cached.
+There are many ways to do this, and each method has its own pros and cons. I thought it would be <span style="background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">fun</span> to try and map those out, and hopefully it can be helpful to others as well.
 Alright, let's go!
 
 <a href="/images/caching-layers.svg" target="_blank" style="border-bottom:none;display:block;">
