@@ -1,0 +1,31 @@
+graph TD
+    subgraph CLIENT ["🖥️ Client"]
+        direction LR
+        A1["Runtime variables"] ~~~ A2["History state"] ~~~ A3["Session storage"] ~~~ A4["Local storage"] ~~~ A5["Cookies"] ~~~ A6["IndexedDB"]
+    end
+
+    subgraph PROXY ["⚡ Client-proxy"]
+        B1["Service Workers — CacheStorage API"]
+    end
+
+    subgraph BROWSER ["🌐 Browser"]
+        direction LR
+        C1["HTTP cache"]
+    end
+
+    subgraph CDN ["🌍 Edge / CDN"]
+        D1["CDN cache — s-maxage, Surrogate-Control"]
+    end
+
+    subgraph SERVER ["☁️ Server"]
+        direction LR
+        E1["Memory cache"] ~~~ E2["Filesystem"] ~~~ E3["Database"]
+    end
+
+    CLIENT --> PROXY --> BROWSER --> CDN --> SERVER
+
+    style CLIENT fill:#e0f2fe,stroke:#7dd3fc,color:#0c4a6e
+    style PROXY fill:#fef3c7,stroke:#fbbf24,color:#78350f
+    style BROWSER fill:#ede9fe,stroke:#a78bfa,color:#4c1d95
+    style CDN fill:#fce7f3,stroke:#f472b6,color:#831843
+    style SERVER fill:#d1fae5,stroke:#34d399,color:#064e3b
