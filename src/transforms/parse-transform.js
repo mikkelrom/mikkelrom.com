@@ -1,5 +1,4 @@
-const jsdom = require('@tbranyen/jsdom');
-const {JSDOM} = jsdom;
+const {JSDOM} = require('jsdom');
 const minify = require('../utils/minify.js');
 const slugify = require('slugify');
 
