@@ -22,6 +22,7 @@
     "yargs-parser": "^21.0.0"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
@@ -40,7 +41,8 @@
     "cms:bundle": "rollup --config",
     "start": "concurrently \"npm run sass:process -- --watch\" \"npm run cms:bundle -- --watch\" \"chokidar \\\"src/_includes/**\\\" -c \\\"npm run cms:precompile\\\"\" \"npm run serve\"",
     "serve": "cross-env ELEVENTY_ENV=development npx eleventy --serve",
-    "production": "npm run sass:process && npm run cms:precompile && npm run cms:bundle && npx eleventy"
+    "mermaid": "mmdc -i src/images/caching-layers.mmd -o src/images/caching-layers.svg",
+    "production": "npm run mermaid && npm run sass:process && npm run cms:precompile && npm run cms:bundle && npx eleventy"
   },
   "repository": {
     "type": "git",
