@@ -1,7 +1,5 @@
 const rssPlugin = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const fs = require("fs");
-
 // Import filters
 const dateFilter = require('./src/filters/date-filter.js');
 const markdownFilter = require('./src/filters/markdown-filter.js');
@@ -31,6 +29,7 @@ module.exports = function(config) {
   config.addPassthroughCopy('src/fonts');
   config.addPassthroughCopy('src/images');
   config.addPassthroughCopy('src/js');
+  config.addPassthroughCopy('src/models');
   config.addPassthroughCopy('src/admin/config.yml');
   config.addPassthroughCopy('src/admin/previews.js');
   config.addPassthroughCopy('node_modules/nunjucks/browser/nunjucks-slim.js');
@@ -46,6 +45,16 @@ module.exports = function(config) {
 
   config.addShortcode("first-letter", function(text) {
     return `<p class="first-letter">${text}</p>`;
+  });
+
+  // Start details + summary
+  config.addShortcode("details", function(text) {
+    return `<details><summary>${text}</summary>`;
+  });
+
+  // End details
+  config.addShortcode("details-end", function() {
+    return `</details>`;
   });
 
   const now = new Date();
@@ -68,19 +77,10 @@ module.exports = function(config) {
   config.addPlugin(rssPlugin);
   config.addPlugin(syntaxHighlight);
 
-  // 404 
-  config.setBrowserSyncConfig({
-    callbacks: {
-      ready: function(err, browserSync) {
-        const content_404 = fs.readFileSync('dist/404.html');
-
-        browserSync.addMiddleware("*", (req, res) => {
-          // Provides the 404 content without redirect.
-          res.write(content_404);
-          res.end();
-        });
-      }
-    }
+  // 404
+  config.setServerOptions({
+    domDiff: true,
+    showAllHosts: true,
   });
 
   return {

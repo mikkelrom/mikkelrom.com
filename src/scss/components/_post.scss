@@ -56,7 +56,25 @@
 
       li + li {
         margin-top: get-size(300);
+
       }
+    }
+
+    details {
+      ol:not([class]),
+      ul:not([class]) {
+        li {
+          font-size: 16px;
+        }
+
+        li + li {
+          margin-top: 0.4rem;//get-size(300) / 2;
+        }
+      }
+    }
+
+    summary:focus {
+      outline: 2px solid var(--color-theme-highlight);
     }
 
     figure,
