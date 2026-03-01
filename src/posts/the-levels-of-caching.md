@@ -5,8 +5,8 @@ date: 2020-07-31T09:02:28.278Z
 tags:
   - caching
 ---
-Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All these informations needs to be persisted, or in other words, cached. 
-There are many ways to do this, and each method has it's own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to others as well.
+Let's say you are building a website/webapp and suddenly you need to persist some information. That could be anything really, like "this user is logged in" or "this user has signed up for the newsletter". It could even be something like "the user has chosen to see the condensed product-list view, instead of the default gallery-view". All this information needs to be persisted, or in other words, cached.
+There are many ways to do this, and each method has its own pros and cons. I thought it would be fun to try and map those out, and hopefully it can be helpful to others as well.
 
 **Overview**
 
@@ -26,11 +26,11 @@ Let's start with the caching technologies that are available on the client.
 
 ### Persistence
 
-This lives in memory, and will be cleared (or reset to it's initial state) when you reload the page.
+This lives in memory, and will be cleared (or reset to its initial state) when you reload the page.
 
 ### Use-case
 
-A common scenario for this could be to save whether the user has opened the burger-menu or not. It could also be used to save whether the user is currently hovering a specific element or not. These types of informations doesn't need to be "survive" a page-refresh.
+A common scenario for this could be to save whether the user has opened the burger-menu or not. It could also be used to save whether the user is currently hovering a specific element or not. These types of information don't need to survive a page-refresh.
 
 ### Examples
 
@@ -41,7 +41,7 @@ let color = 'red';
 
 ```css
 /* CSS */
-::root {
+:root {
     --color: red;
 }
 ```
@@ -107,12 +107,12 @@ sessionStorage.getItem("key"); // "value"
 Cookies are kind of old-school, but they actually have a super-power that for example local storage doesn't have: Cookies are sent from the client to the server, which can be very useful. 
 
 ### Persistence
-A cookie can be a "session cookie". Session cookies is only persisted in the current session, similar to session storage.
-If a cookie if not a session cookie, then it is persisted, so it can "survive" a page-refresh. It will be deleted when the user chooses to ["Clear browsing data"](https://support.google.com/accounts/answer/32050). It can also be deleted programmatically in JS or manually through browser devtools. 
+A cookie can be a "session cookie". Session cookies are only persisted in the current session, similar to session storage.
+If a cookie is not a session cookie, then it is persisted, so it can "survive" a page-refresh. It will be deleted when the user chooses to ["Clear browsing data"](https://support.google.com/accounts/answer/32050). It can also be deleted programmatically in JS or manually through browser devtools. 
 A cookie can also have an optional `expirationDate` set, which will automatically invalidate the cookie at that time.
 
 ### Use-case
-A cookie has been used for many years to save whether the user is logged in or not. This has also shown be to risky though, since cookies can be stolen. A cookie could also be used for saving the view-mode.
+A cookie has been used for many years to save whether the user is logged in or not. This has also shown to be risky though, since cookies can be stolen. A cookie could also be used for saving the view-mode.
 
 ### Example
 
