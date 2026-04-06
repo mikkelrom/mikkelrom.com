@@ -54,5 +54,8 @@
   "bugs": {
     "url": "https://github.com/hankchizljaw/hylia/issues"
   },
-  "homepage": "https://github.com/hankchizljaw/hylia#readme"
+  "homepage": "https://github.com/hankchizljaw/hylia#readme",
+  "overrides": {
+    "lodash-es": "^4.18.0"
+  }
 }
