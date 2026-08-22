@@ -2,9 +2,6 @@
   command = "npm run production"
   publish = "dist"
 
-[build.environment]
-  NODE_VERSION = "20"
-
 [[headers]]
   for = "/models/*"
   [headers.values]
