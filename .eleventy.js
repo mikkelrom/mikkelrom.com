@@ -30,9 +30,6 @@ module.exports = function(config) {
   config.addPassthroughCopy('src/images');
   config.addPassthroughCopy('src/js');
   config.addPassthroughCopy('src/models');
-  config.addPassthroughCopy('src/admin/config.yml');
-  config.addPassthroughCopy('src/admin/previews.js');
-  config.addPassthroughCopy('node_modules/nunjucks/browser/nunjucks-slim.js');
 
   // ShortCodes
   config.addShortcode("first-letter-paragraph-start", function(text) {

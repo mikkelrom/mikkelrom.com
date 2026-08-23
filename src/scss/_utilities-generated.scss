@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use 'config';
+
+/**
+ * UTILITY GENERATOR
+ * Walks `$utilities` and emits a class per item. Entries marked
+ * 'responsive' are emitted again inside each breakpoint, prefixed with the
+ * breakpoint key, e.g. `.md\:box-flex`.
+ */
+@mixin generate($prefix, $is-breakpoint) {
+  @each $selector, $props in config.$utilities {
+    $items: map.get($props, 'items');
+    $output: map.get($props, 'output');
+    $property: map.get($props, 'property');
+
+    @if ($property and $items and ($output == 'responsive' or not $is-breakpoint)) {
+      @each $key, $value in $items {
+        .#{$prefix}#{$selector}-#{$key} {
+          #{$property}: #{$value};
+        }
+      }
+    }
+  }
+}
+
+/**
+ * FLOW UTILITY
+ * Adds space between sibling elements. The `--flow-space` custom property
+ * lets the cascade override the default per context.
+ */
+.sf-flow {
+  --flow-space: 1em;
+}
+
+.sf-flow > * + * {
+  margin-top: var(--flow-space);
+}
+
+@include generate('', false);
+
+@each $key, $value in config.$breakpoints {
+  @media screen and #{$value} {
+    @include generate('#{$key}\\:', true);
+  }
+}

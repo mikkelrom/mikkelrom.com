@@ -1,0 +1,58 @@
+@use 'sass:map';
+@use 'config';
+
+/**
+ * Wraps content in one of the configured breakpoints from `$breakpoints`.
+ */
+@mixin media-query($key) {
+  $matched: map.get(config.$breakpoints, $key);
+
+  @if not $matched {
+    @warn 'Breakpoint "#{$key}" not found in $breakpoints';
+  } @else {
+    @media #{$matched} {
+      @content;
+    }
+  }
+}
+
+/**
+ * Applies the property and value of a configured utility inline, so a
+ * component can reuse a utility without reaching for the class.
+ */
+@mixin apply-utility($key, $value-key) {
+  $utility: map.get(config.$utilities, $key);
+
+  @if not $utility {
+    @warn 'Utility "#{$key}" does not exist';
+  } @else {
+    $property: map.get($utility, 'property');
+    $item-value: map.get(map.get($utility, 'items'), $value-key);
+
+    @if $item-value {
+      #{$property}: #{$item-value};
+    } @else {
+      @warn 'Value "#{$value-key}" does not exist in utility "#{$key}"';
+    }
+  }
+}
+
+/**
+ * Defines dark mode custom properties in a way that respects both the OS
+ * preference and an explicit choice made through the theme toggle component.
+ */
+@mixin dark-mode() {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-mode: 'dark';
+    }
+
+    :root:not([data-user-color-scheme]) {
+      @content;
+    }
+  }
+
+  [data-user-color-scheme='dark'] {
+    @content;
+  }
+}

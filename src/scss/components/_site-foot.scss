@@ -11,10 +11,6 @@
       text-decoration: none;
     }
   }
-
-  &__credit {
-    text-align: center;
-  }
 }
 
 .speedlify-score-wrapper {
@@ -40,13 +36,5 @@
 
   > a {
     text-decoration: none;
-  }
-}
-
-.green-website-wrapper {
-  margin-top: 2rem;
-  text-align: center;
-  > a {
-    border-bottom: none;
   }
 }

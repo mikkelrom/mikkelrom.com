@@ -1,3 +1,5 @@
+@use '../core' as *;
+
 .nav {
   &__list {
     overflow-x: auto;

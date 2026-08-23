@@ -1,96 +1,37 @@
-@import 'config';
-
-// Pull in the stalfos lib
-@import '../../node_modules/stalfos/stalfos.scss';
-
-// Local mixins
-@import 'mixins/dark-mode';
-
-@import 'theme';
-
-// Local dependencies
-@import 'typography';
-
 /**
- * GLOBAL STYLES
+ * ENTRY POINT
+ * Load order matters. Global element styles must land before the utility and
+ * component layers, because selectors like `a:not([class])` and `.site-foot a`
+ * share the same specificity and the later one wins.
  */
-html, body {
-  height: 100%;
-}
 
-body {
-  scroll-behavior: smooth;
-  display: flex;
-  flex-direction: column;
-}
+// Foundations
+@use 'reset';
+@use 'utilities-generated';
+@use 'theme';
+@use 'typography';
 
-main {
-  flex: 1 0 auto;
-  &:focus {
-    outline: none;
-  }
-}
-
-hr {
-  display: block;
-  height: 1px;
-  max-width: 500px;
-  background: var(--color-stroke);
-  border: none;
-  margin: get-size(900) auto;
-}
-
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-  cursor: pointer;
-
-  color: var(--color-dark);
-  position: relative;
-  display: inline-block;
-  padding: 0.2rem 0.4rem 0.3rem 0.4rem;
-  text-decoration: none;
-  word-break: break-word;
-  border-bottom: 2px solid var(--color-theme-highlight);
-  transition: color 0.1s ease-in;
-
-  &:hover {
-      color: var(--color-theme-highlight);
-  }
-}
-
-@include dark-mode() {
-  a:not([class]) {
-    color: var(--color-light);
-    border-bottom: 2px solid var(--color-theme-highlight);
-  }
-
-  a:not([class]):hover {
-    color: var(--color-theme-highlight);
-  }
-}
-
-/**
- * PROJECT IMPORTS
- */
+// Global element styles
+@use 'global-styles';
 
 // Utils
-@import 'utilities/inner-wrapper';
-@import 'utilities/visually-hidden';
-@import 'utilities/wrapper';
+@use 'utilities/inner-wrapper';
+@use 'utilities/visually-hidden';
+@use 'utilities/wrapper';
 
 // Components
-@import 'components/button';
-@import 'components/heading-permalink';
-@import 'components/intro';
-@import 'components/nav';
-@import 'components/pagination';
-@import 'components/post';
-@import 'components/post-list';
-@import 'components/site-head';
-@import 'components/site-foot';
-@import 'components/skip-link';
-@import 'components/syntax-highlighting';
-@import 'components/video-player';
+@use 'components/button';
+@use 'components/heading-permalink';
+@use 'components/intro';
+@use 'components/nav';
+@use 'components/pagination';
+@use 'components/post';
+@use 'components/post-list';
+@use 'components/site-head';
+@use 'components/site-foot';
+@use 'components/skip-link';
+@use 'components/syntax-highlighting';
+@use 'components/video-player';
 
-// Speedlify-Score component
-@import "../../node_modules/speedlify-score/speedlify-score";
+// Speedlify score web component styles
+@use '../../node_modules/speedlify-score/speedlify-score';

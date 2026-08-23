@@ -1,32 +1,29 @@
+@use 'sass:map';
 @use 'sass:math';
-@import 'tokens';
+@use 'tokens';
 
 /**
  * SIZE SCALE
- * This is a Major Third scale that powers all the utilities that
- * it is relevant for (font-size, margin, padding). All items are
- * calcuated off these tokens.
+ * A Major Third scale powering font-size, margin and padding utilities.
+ * Generated from src/_data/tokens.json via `npm run sass:tokens`.
  */
-$stalfos-size-scale: map-get($tokens, 'size-scale');
+$size-scale: map.get(tokens.$tokens, 'size-scale');
 
 /**
  * COLORS
- * Colors are shared between backgrounds and text by default. 
- * You can also use them to power borders, fills or shadows, for example.
+ * Shared between backgrounds and text by default. Also used to power
+ * borders, fills and shadows.
  */
-$stalfos-colors: map-get($tokens, 'colors');
+$colors: map.get(tokens.$tokens, 'colors');
 
 /**
- * UTIL PREFIX
- * All pre-built, framework utilities will have this prefix. 
- * Example: the wrapper utility is '.sf-wrapper' because the default
- * prefix is 'sf-'.
+ * FONTS
  */
-$stalfos-util-prefix: 'sf-';
+$fonts: map.get(tokens.$tokens, 'fonts');
 
 /**
  * METRICS
- * Various misc metrics to use around the site
+ * Misc metrics used around the site.
  */
 $metrics: (
   'wrap-max-width': 58rem,
@@ -35,149 +32,76 @@ $metrics: (
 );
 
 /**
- * CORE CONFIG
- * This powers everything from utility class generation to breakpoints
- * to enabling/disabling pre-built components/utilities.
+ * BREAKPOINTS
+ * Keys here become responsive utility prefixes, e.g. `.md\:box-flex`.
  */
-$stalfos-config: (
+$breakpoints: (
+  'md': '(min-width: ' + map.get($metrics, 'md-breakpoint') + ')'
+);
+
+/**
+ * UTILITIES
+ * Each entry generates a set of classes named `<key>-<item key>`.
+ * An `output` of 'responsive' also generates a prefixed variant per breakpoint.
+ */
+$utilities: (
   'align': (
-    'items': (
-      'start': 'flex-start',
-      'center': 'center',
-      'end': 'flex-end'
-    ),
+    'items': ('start': 'flex-start', 'center': 'center', 'end': 'flex-end'),
     'output': 'responsive',
     'property': 'align-items'
   ),
-  'bg': (
-    'items': $stalfos-colors,
-    'output': 'standard',
-    'property': 'background'
-  ),
-  'color': (
-    'items': $stalfos-colors,
-    'output': 'standard',
-    'property': 'color'
-  ),
+  'bg': ('items': $colors, 'output': 'standard', 'property': 'background'),
+  'color': ('items': $colors, 'output': 'standard', 'property': 'color'),
   'box': (
-    'items': (
-      'block': 'block',
-      'flex': 'flex',
-      'inline-flex': 'inline-flex',
-      'hide': 'none'
-    ),
+    'items': ('block': 'block', 'flex': 'flex', 'inline-flex': 'inline-flex', 'hide': 'none'),
     'output': 'responsive',
     'property': 'display'
   ),
-  'font': (
-    'items': map-get($tokens, 'fonts'),
-    'output': 'standard',
-    'property': 'font-family'
-  ),
-  'gap-top': (
-    'items': $stalfos-size-scale,
-    'output': 'standard',
-    'property': 'margin-top'
-  ),
-  'gap-bottom': (
-    'items': $stalfos-size-scale,
-    'output': 'standard',
-    'property': 'margin-bottom'
-  ),
+  'font': ('items': $fonts, 'output': 'standard', 'property': 'font-family'),
+  'gap-top': ('items': $size-scale, 'output': 'standard', 'property': 'margin-top'),
+  'gap-bottom': ('items': $size-scale, 'output': 'standard', 'property': 'margin-bottom'),
   'leading': (
-    'items': (
-      'tight': '1.2',
-      'mid': '1.5',
-      'loose': '1.7'
-    ),
+    'items': ('tight': '1.2', 'mid': '1.5', 'loose': '1.7'),
     'output': 'standard',
     'property': 'line-height'
   ),
   'measure': (
-    'items': (
-      'long': '75ch',
-      'short': '60ch',
-      'compact': '40ch'
-    ),
+    'items': ('long': '75ch', 'short': '60ch', 'compact': '40ch'),
     'output': 'standard',
     'property': 'max-width'
   ),
-  'pad-top': (
-    'items': $stalfos-size-scale,
-    'output': 'standard',
-    'property': 'padding-top'
-  ),
-  'pad-bottom': (
-    'items': $stalfos-size-scale,
-    'output': 'standard',
-    'property': 'padding-bottom'
-  ),
-  'pad-left': (
-    'items': $stalfos-size-scale,
-    'output': 'standard',
-    'property': 'padding-left'
-  ),
+  'pad-top': ('items': $size-scale, 'output': 'standard', 'property': 'padding-top'),
+  'pad-bottom': ('items': $size-scale, 'output': 'standard', 'property': 'padding-bottom'),
+  'pad-left': ('items': $size-scale, 'output': 'standard', 'property': 'padding-left'),
   'space': (
-    'items': (
-      'between': 'space-between',
-      'around': 'space-around',
-      'before': 'flex-end'
-    ),
+    'items': ('between': 'space-between', 'around': 'space-around', 'before': 'flex-end'),
     'output': 'responsive',
     'property': 'justify-content'
   ),
   'stack': (
-    'items': (
-      '300': 0,
-      '400': 10,
-      '500': 20,
-      '600': 30,
-      '700': 40
-    ),
+    'items': ('300': 0, '400': 10, '500': 20, '600': 30, '700': 40),
     'output': 'standard',
     'property': 'z-index'
   ),
   'ta': (
-    'items': (
-      'right': 'right',
-      'left': 'left',
-      'center': 'center'
-    ),
+    'items': ('right': 'right', 'left': 'left', 'center': 'center'),
     'output': 'responsive',
     'property': 'text-align'
   ),
-  'text': (
-    'items': $stalfos-size-scale,
-    'output': 'responsive',
-    'property': 'font-size'
-  ),
+  'text': ('items': $size-scale, 'output': 'responsive', 'property': 'font-size'),
   'weight': (
-    'items': (
-      'light': '300',
-      'regular': '400',
-      'mid': '600',
-      'bold': '700'
-    ),
+    'items': ('light': '300', 'regular': '400', 'mid': '600', 'bold': '700'),
     'output': 'standard',
     'property': 'font-weight'
   ),
   'width': (
     'items': (
       'full': '100%',
-      'half': percentage(math.div(1, 2)),
-      'quarter': percentage(math.div(1,4)),
-      'third': percentage(math.div(1, 3)),
+      'half': math.percentage(math.div(1, 2)),
+      'quarter': math.percentage(math.div(1, 4)),
+      'third': math.percentage(math.div(1, 3))
     ),
     'output': 'responsive',
     'property': 'width'
-  ),
-  'breakpoints': (
-    'md': #{'(min-width: ' + map-get($metrics, 'md-breakpoint') + ')'}
-  ),
-  'utilities': (
-    'reset': 'on',
-    'icon': 'off',
-    'flow': 'on',
-    'wrapper': 'off'
   )
 );
