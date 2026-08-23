@@ -9,8 +9,9 @@ const EXCLUDED_URLS = ['.netlify'];
 // URLS that we want to be cached when the worker is installed
 const PRE_CACHE_URLS = ['/', '/fonts/lora-v13-latin-700.woff2'];
 
-// You might want to bypass a certain host
-const IGNORED_HOSTS = ['localhost'];
+// Hosts that should always go to the network. Consent state must never be
+// served from a stale cache.
+const IGNORED_HOSTS = ['localhost', 'consent.cookiebot.com', 'consentcdn.cookiebot.com'];
 
 /**
  * Takes an array of strings and puts them in a named cache store
