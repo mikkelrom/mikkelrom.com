@@ -1,3 +1,5 @@
+@use '../core' as *;
+
 .inner-wrapper {
   max-width: map-get($metrics, 'wrap-inner-max-width');
   margin-left: auto;

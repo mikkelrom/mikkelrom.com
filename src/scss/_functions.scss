@@ -1,0 +1,32 @@
+@use 'sass:map';
+@use 'config';
+
+/**
+ * Returns a value from the size scale, or null with a warning if the key
+ * is not in `$size-scale`.
+ */
+@function get-size($key) {
+  $response: map.get(config.$size-scale, $key);
+
+  @if ($response) {
+    @return $response;
+  }
+
+  @warn 'Size "#{$key}" not found in $size-scale';
+  @return null;
+}
+
+/**
+ * Returns a value from the color palette, or null with a warning if the key
+ * is not in `$colors`.
+ */
+@function get-color($key) {
+  $response: map.get(config.$colors, $key);
+
+  @if ($response) {
+    @return $response;
+  }
+
+  @warn 'Color "#{$key}" not found in $colors';
+  @return null;
+}

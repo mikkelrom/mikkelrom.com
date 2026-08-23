@@ -14,11 +14,10 @@
     "html-minifier-terser": "^7.2.0",
     "jsdom": "^28.1.0",
     "json-to-scss": "^1.6.2",
-    "sass": "^1.49.7",
+    "sass": "^1.103.1",
     "semver": "^7.5.2",
     "slugify": "^1.6.5",
     "speedlify-score": "^2.0.2",
-    "stalfos": "github:hankchizljaw/stalfos#c8971d22726326cfc04089b2da4d51eeb1ebb0eb",
     "yargs-parser": "^21.0.0"
   },
   "devDependencies": {

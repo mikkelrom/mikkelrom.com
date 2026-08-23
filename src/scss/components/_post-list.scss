@@ -1,3 +1,5 @@
+@use '../core' as *;
+
 .post-list {
   &__item {
     --flow-space: #{get-size(700)};
